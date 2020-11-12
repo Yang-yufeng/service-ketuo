@@ -138,6 +138,38 @@ public class ParkingLotController {
         return parkingLotService.carChargeReport(appId, key, parkId, ts, reqId, entryTime, payTime, paidMoney, plateNo, cardNo);
     }
 
+    /**
+     * 设备状态上报
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    public String deviceStateReport(HttpServletRequest request) throws IOException {
+        BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8));
+        String param= null;
+        StringBuilder responseStrBuilder = new StringBuilder();
+        String inputStr;
+        while ((inputStr = streamReader.readLine()) != null) {
+            responseStrBuilder.append(inputStr);
+        }
+        JSONObject jsonObject = JSONObject.parseObject(responseStrBuilder.toString());
+        System.out.println("设备状态上报");
+        System.out.println("上报参数================="+jsonObject);
+        String appId=jsonObject.getString("appId");
+        String key=jsonObject.getString("key");
+        Integer parkId=jsonObject.getInteger("parkId");
+        String ts=jsonObject.getString("ts");
+        String reqId=jsonObject.getString("reqId");
+        String deviceCode=jsonObject.getString("deviceCode");
+        String deviceIp=jsonObject.getString("deviceIp");
+        String deviceName=jsonObject.getString("deviceName");
+        Integer deviceType=jsonObject.getInteger("deviceType");
+        String status=jsonObject.getString("status");
+        String remark=jsonObject.getString("remark");
+        String statusTime=jsonObject.getString("statusTime");
+        return parkingLotService.deviceStateReport(appId,key,parkId,ts,reqId,deviceCode,deviceIp,deviceName,deviceType,status,remark,statusTime );
+    }
+
 
     /**
      * 获取停车场信息
@@ -168,6 +200,8 @@ public class ParkingLotController {
     public String listDevices(@Validated DeviceReqDTO deviceRequestVO){
         return parkingLotService.listDevices(deviceRequestVO);
     }
+
+
 
 
 

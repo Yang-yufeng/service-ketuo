@@ -99,6 +99,25 @@ public interface ParkingLotService {
 
 
     /**
+     * 设备状态上报
+     * @param appId      应用ID
+     * @param key        加密串
+     * @param parkId     停车场ID
+     * @param ts         时间戳
+     * @param reqId      请求ID
+     * @param deviceCode 设备编码
+     * @param deviceIp 设备IP
+     * @param deviceName 设备名
+     * @param deviceType 设备类型
+     * @param status 设备状态
+     * @param remark 故障描述
+     * @param statusTime 故障/恢复时间
+     * @return
+     */
+    String deviceStateReport(String appId, String key, Integer parkId, String ts, String reqId,String deviceCode,String deviceIp,String deviceName,
+                             Integer deviceType,String status,String remark,String statusTime);
+
+    /**
      *
      * @param parkingLotReqDTO  封装停车场信息请求对象
      * @return
