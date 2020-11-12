@@ -63,5 +63,17 @@ public class RechargeController {
 
     }
 
+    /**
+     * 车场固定车充值信息上报
+     * @param fixedCarChargeRecordDTO
+     * @return
+     */
+    @RequestMapping(value = "/postCarCardChargeInfo",method = RequestMethod.POST)
+    public String postCarCardChargeInfo(@RequestBody @Validated FixedCarChargeRecordDTO fixedCarChargeRecordDTO){
+
+        return rechargeService.getChargeRecords(fixedCarChargeRecordDTO);
+
+    }
+
 
 }
