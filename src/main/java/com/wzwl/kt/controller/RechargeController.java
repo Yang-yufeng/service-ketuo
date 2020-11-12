@@ -2,9 +2,7 @@ package com.wzwl.kt.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.service.RechargeService;
-import com.wzwl.kt.vo.FixedCarChargeRecordVo;
-import com.wzwl.kt.vo.PayCarCardFee;
-import com.wzwl.kt.vo.RechargeRuleInfoVo;
+import com.wzwl.kt.vo.*;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +55,16 @@ public class RechargeController {
 
         return rechargeService.getChargeRecords(fixedCarChargeRecordVo);
 
+    }
+
+    /**
+     *车场固定车充值信息上报
+     * @param postCarCardChargeInfoVo
+     * @return
+     */
+    @RequestMapping(value = "/postCarCardChargeInfo",method = RequestMethod.POST)
+    public String postCarCardChargeInfo(@RequestBody PostCarCardChargeInfoVo postCarCardChargeInfoVo){
+        return rechargeService.postCarCardChargeInfo(postCarCardChargeInfoVo);
     }
 
 

@@ -3,6 +3,7 @@ package com.wzwl.kt.service;
 import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.vo.FixedCarChargeRecordVo;
 import com.wzwl.kt.vo.PayCarCardFee;
+import com.wzwl.kt.vo.PostCarCardChargeInfoVo;
 import com.wzwl.kt.vo.RechargeRuleInfoVo;
 
 /**
@@ -32,4 +33,11 @@ public interface RechargeService {
      * @return
      */
     String getChargeRecords(FixedCarChargeRecordVo fixedCarChargeRecordVo);
+
+    /**
+     * 车场固定车充值信息上报
+     * @param postCarCardChargeInfoVo
+     * @return
+     */
+    String postCarCardChargeInfo(PostCarCardChargeInfoVo postCarCardChargeInfoVo);
 }
