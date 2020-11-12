@@ -3,7 +3,7 @@ package com.wzwl.kt;
 import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.common.HttpUtil;
 import com.wzwl.kt.common.SignUtil;
-import com.wzwl.kt.vo.PassageRequestVO;
+import com.wzwl.kt.vo.PassageReqDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -65,19 +65,19 @@ public class ServiceKetuoApplicationTests {
 
     @Test
     public void testGetPassages(){
-        PassageRequestVO passageRequestVo = new PassageRequestVO();
-        passageRequestVo.setAppId("10156");
-        passageRequestVo.setParkId(115);
-        passageRequestVo.setServiceCode("getParkingNode");
-        passageRequestVo.setReqId(UUID.randomUUID().toString().replace("-", ""));
-        passageRequestVo.setTs(System.currentTimeMillis() + "");
-        passageRequestVo.setPageIndex(1);
-        passageRequestVo.setPageSize(100);
-        String key=SignUtil.paramsSign((JSONObject) JSONObject.toJSON(passageRequestVo), "cba9dccc39e247c6afe53157b96422b2");
-        passageRequestVo.setKey(key);
-        String freeLotsResponse=HttpUtil.doPostRequestJson("http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode", (JSONObject) JSONObject.toJSON(passageRequestVo));
+        PassageReqDTO passageReqDTO= new PassageReqDTO();
+        passageReqDTO.setAppId("10156");
+        passageReqDTO.setParkId(115);
+        passageReqDTO.setServiceCode("getParkingNode");
+        passageReqDTO.setReqId(UUID.randomUUID().toString().replace("-", ""));
+        passageReqDTO.setTs(System.currentTimeMillis() + "");
+        passageReqDTO.setPageIndex(1);
+        passageReqDTO.setPageSize(100);
+        String key=SignUtil.paramsSign((JSONObject) JSONObject.toJSON(passageReqDTO), "cba9dccc39e247c6afe53157b96422b2");
+        passageReqDTO.setKey(key);
+        String freeLotsResponse=HttpUtil.doPostRequestJson("http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode", (JSONObject) JSONObject.toJSON(passageReqDTO));
         System.out.println("车位数请求结果====================" + freeLotsResponse);
-        System.out.println((JSONObject) JSONObject.toJSON(passageRequestVo));
+        System.out.println((JSONObject) JSONObject.toJSON(passageReqDTO));
         JSONObject freeLotsResponseJson=JSONObject.parseObject(freeLotsResponse);
         JSONObject dataJson=freeLotsResponseJson.getJSONObject("data");
         System.out.println("总车位数=====================" + dataJson.getInteger("totalNum"));

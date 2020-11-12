@@ -6,7 +6,7 @@ import com.wzwl.kt.constants.RequestUrlConstants;
 import com.wzwl.kt.service.ParkingLotService;
 import com.wzwl.kt.vo.DeviceReqDTO;
 import com.wzwl.kt.vo.ParkingLotReqDTO;
-import com.wzwl.kt.vo.PassageRequestVO;
+import com.wzwl.kt.vo.PassageReqDTO;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -236,14 +236,14 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     }
 
     @Override
-    public String listPassages(PassageRequestVO passageRequestVo) {
-        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PASSAGES_URL, (JSONObject) JSONObject.toJSON(passageRequestVo));
+    public String listPassages(PassageReqDTO passageReqDTO) {
+        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PASSAGES_URL, (JSONObject) JSONObject.toJSON(passageReqDTO));
         return  result;
     }
 
     @Override
-    public String listDevices(DeviceReqDTO deviceRequestVO) {
-        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_DEVICES_URL, (JSONObject) JSONObject.toJSON(deviceRequestVO));
+    public String listDevices(DeviceReqDTO deviceRequestDTO) {
+        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_DEVICES_URL, (JSONObject) JSONObject.toJSON(deviceRequestDTO));
         return  result;
     }
 

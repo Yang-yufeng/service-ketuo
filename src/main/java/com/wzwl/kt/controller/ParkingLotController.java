@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.service.ParkingLotService;
 import com.wzwl.kt.vo.DeviceReqDTO;
 import com.wzwl.kt.vo.ParkingLotReqDTO;
-import com.wzwl.kt.vo.PassageRequestVO;
+import com.wzwl.kt.vo.PassageReqDTO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -151,12 +151,12 @@ public class ParkingLotController {
 
     /**
      * 获取停车场通道信息
-     * @param passageRequestVo 封装通道信息请求对象
+     * @param passageReqDTO 封装通道信息请求对象
      * @return
      */
     @RequestMapping("/listParkingLots")
-    public String listPassages(@Validated PassageRequestVO passageRequestVo){
-        return parkingLotService.listPassages(passageRequestVo);
+    public String listPassages(@Validated PassageReqDTO passageReqDTO){
+        return parkingLotService.listPassages(passageReqDTO);
     }
 
     /**
