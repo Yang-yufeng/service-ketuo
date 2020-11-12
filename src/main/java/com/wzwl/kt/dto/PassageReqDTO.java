@@ -1,4 +1,4 @@
-package com.wzwl.kt.vo;
+package com.wzwl.kt.dto;
 
 import lombok.Data;
 

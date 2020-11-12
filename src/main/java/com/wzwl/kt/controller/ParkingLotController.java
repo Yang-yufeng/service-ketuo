@@ -3,9 +3,9 @@ package com.wzwl.kt.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.service.ParkingLotService;
-import com.wzwl.kt.vo.DeviceReqDTO;
-import com.wzwl.kt.vo.ParkingLotReqDTO;
-import com.wzwl.kt.vo.PassageReqDTO;
+import com.wzwl.kt.dto.DeviceReqDTO;
+import com.wzwl.kt.dto.ParkingLotReqDTO;
+import com.wzwl.kt.dto.PassageReqDTO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

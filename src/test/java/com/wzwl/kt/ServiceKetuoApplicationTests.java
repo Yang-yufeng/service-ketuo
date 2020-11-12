@@ -3,7 +3,7 @@ package com.wzwl.kt;
 import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.common.HttpUtil;
 import com.wzwl.kt.common.SignUtil;
-import com.wzwl.kt.vo.PassageReqDTO;
+import com.wzwl.kt.dto.PassageReqDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

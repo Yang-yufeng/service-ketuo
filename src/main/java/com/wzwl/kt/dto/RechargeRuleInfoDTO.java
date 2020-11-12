@@ -1,4 +1,4 @@
-package com.wzwl.kt.vo;
+package com.wzwl.kt.dto;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  * @date 2020/11/12 14:55
  */
 @Data
-public class RechargeRuleInfoVo extends BaseDTO {
+public class RechargeRuleInfoDTO extends BaseDTO {
 
     /**
      * 固定车类型

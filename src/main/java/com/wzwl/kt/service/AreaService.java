@@ -1,6 +1,6 @@
 package com.wzwl.kt.service;
 
-import com.wzwl.kt.vo.BaseDTO;
+import com.wzwl.kt.dto.BaseDTO;
 
 /**
  * @author huff
@@ -10,8 +10,8 @@ public interface AreaService {
 
     /**
      * 获得区域数据、停车位数量信息
-     * @param baseVO
+     * @param baseDTO
      * @return
      */
-    String getAreaData(BaseDTO baseVO);
+    String getAreaData(BaseDTO baseDTO);
 }

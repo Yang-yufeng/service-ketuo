@@ -1,24 +1,27 @@
-package com.wzwl.kt.vo;
+package com.wzwl.kt.dto;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
 /**
- * @ClassName ParkingLotRequestVO
+ * @ClassName BaseVO
  * @Description TODO
  * @Author yangwu
- * @Date 2020/11/12 17:12
+ * @Date 2020/11/12 14:55
  * @Version 1.0
  */
 @Data
-public class ParkingLotReqDTO {
+public abstract class BaseDTO {
 
     @NotNull(message="appId不能为空")
     private String appId;
 
     @NotNull(message="key不能为空")
     private String key;
+
+    @NotNull(message="parkId不能为空")
+    private Integer parkId;
 
     @NotNull(message="serviceCode不能为空")
     private String serviceCode;
@@ -29,9 +32,5 @@ public class ParkingLotReqDTO {
     @NotNull(message="reqId不能为空")
     private String reqId;
 
-    @NotNull(message="pageIndex不能为空")
-    private String pageIndex;
 
-    @NotNull(message="pageSize不能为空")
-    private String pageSize;
 }

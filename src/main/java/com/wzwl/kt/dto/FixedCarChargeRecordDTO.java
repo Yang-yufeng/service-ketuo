@@ -1,4 +1,4 @@
-package com.wzwl.kt.vo;
+package com.wzwl.kt.dto;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  * @date 2020/11/12 15:58
  */
 @Data
-public class FixedCarChargeRecordVo {
+public class FixedCarChargeRecordDTO {
 
     /**
      *车牌号

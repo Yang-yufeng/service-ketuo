@@ -4,11 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.common.HttpUtil;
 import com.wzwl.kt.common.ResponseUtil;
 import com.wzwl.kt.constants.RequestUrlConstants;
+import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
+import com.wzwl.kt.dto.PayCarCardFeeDTO;
+import com.wzwl.kt.dto.RechargeRuleInfoDTO;
 import com.wzwl.kt.service.RechargeService;
-import com.wzwl.kt.vo.FixedCarChargeRecordVo;
-import com.wzwl.kt.vo.PayCarCardFee;
-import com.wzwl.kt.vo.PostCarCardChargeInfoVo;
-import com.wzwl.kt.vo.RechargeRuleInfoVo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,31 +19,31 @@ public class RechargeServiceImpl implements RechargeService {
 
 
     @Override
-    public String getRechargeRules(RechargeRuleInfoVo rechargeRuleInfoVo) {
-        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(rechargeRuleInfoVo));
+    public String getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO) {
+        //调用api接口获取充值规则
+        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(rechargeRuleInfoDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_RECHARGE_RULES,params);
+
         return ResponseUtil.getResponse(response);
     }
 
 
     @Override
-    public String getFixedCarInfo(PayCarCardFee payCarCardFee) {
-        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(payCarCardFee));
+    public String getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
+        //调用api接口获取充值规则
+        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(payCarCardFeeDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.Pay_Car_Card_Fee,params);
+
         return ResponseUtil.getResponse(response);
     }
 
     @Override
-    public String getChargeRecords(FixedCarChargeRecordVo fixedCarChargeRecordVo) {
-        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(fixedCarChargeRecordVo));
+    public String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordDTO) {
+        //调用api接口获取充值规则
+        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(fixedCarChargeRecordDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_FIXED_CAR_CHARGE_RECORDS,params);
+
         return ResponseUtil.getResponse(response);
-    }
-
-    @Override
-    public String postCarCardChargeInfo(PostCarCardChargeInfoVo postCarCardChargeInfoVo) {
-
-        return null;
     }
 
 

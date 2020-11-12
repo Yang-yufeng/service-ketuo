@@ -1,9 +1,9 @@
 package com.wzwl.kt.service;
 
 
-import com.wzwl.kt.vo.DeviceReqDTO;
-import com.wzwl.kt.vo.ParkingLotReqDTO;
-import com.wzwl.kt.vo.PassageReqDTO;
+import com.wzwl.kt.dto.DeviceReqDTO;
+import com.wzwl.kt.dto.ParkingLotReqDTO;
+import com.wzwl.kt.dto.PassageReqDTO;
 import org.springframework.validation.annotation.Validated;
 
 import java.text.ParseException;

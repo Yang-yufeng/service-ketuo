@@ -1,10 +1,14 @@
 package com.wzwl.kt.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
+import com.wzwl.kt.dto.PayCarCardFeeDTO;
+import com.wzwl.kt.dto.RechargeRuleInfoDTO;
 import com.wzwl.kt.service.RechargeService;
-import com.wzwl.kt.vo.*;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -22,49 +26,39 @@ public class RechargeController {
 
     /**
      * 获取充值规则
-     * @param rechargeRuleInfoVo
+     * @param rechargeRuleInfoDTO
      * @return
      */
     @RequestMapping(value = "/getRechargeRules",method = RequestMethod.POST)
-    public String getRechargeRules(@RequestBody @Validated RechargeRuleInfoVo rechargeRuleInfoVo){
+    public String getRechargeRules(@RequestBody @Validated RechargeRuleInfoDTO rechargeRuleInfoDTO){
 
-        return rechargeService.getRechargeRules(rechargeRuleInfoVo);
+        return rechargeService.getRechargeRules(rechargeRuleInfoDTO);
 
     }
 
     /**
      * 充值
-     * @param payCarCardFee
+     * @param payCarCardFeeDTO
      * @return
      */
     @RequestMapping(value = "/getFixedCarInfo",method = RequestMethod.POST)
-    public String getFixedCarInfo(@RequestBody @Validated PayCarCardFee payCarCardFee){
+    public String getFixedCarInfo(@RequestBody @Validated PayCarCardFeeDTO payCarCardFeeDTO){
 
-        return rechargeService.getFixedCarInfo(payCarCardFee);
+        return rechargeService.getFixedCarInfo(payCarCardFeeDTO);
 
     }
 
 
     /**
      * 查询固定车充值记录
-     * @param fixedCarChargeRecordVo
+     * @param fixedCarChargeRecordDTO
      * @return
      */
     @RequestMapping(value = "/getChargeRecords",method = RequestMethod.POST)
-    public String getChargeRecords(@RequestBody @Validated FixedCarChargeRecordVo fixedCarChargeRecordVo){
+    public String getChargeRecords(@RequestBody @Validated FixedCarChargeRecordDTO fixedCarChargeRecordDTO){
 
-        return rechargeService.getChargeRecords(fixedCarChargeRecordVo);
+        return rechargeService.getChargeRecords(fixedCarChargeRecordDTO);
 
-    }
-
-    /**
-     *车场固定车充值信息上报
-     * @param postCarCardChargeInfoVo
-     * @return
-     */
-    @RequestMapping(value = "/postCarCardChargeInfo",method = RequestMethod.POST)
-    public String postCarCardChargeInfo(@RequestBody PostCarCardChargeInfoVo postCarCardChargeInfoVo){
-        return rechargeService.postCarCardChargeInfo(postCarCardChargeInfoVo);
     }
 
 

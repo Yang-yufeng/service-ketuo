@@ -1,10 +1,9 @@
 package com.wzwl.kt.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wzwl.kt.vo.FixedCarChargeRecordVo;
-import com.wzwl.kt.vo.PayCarCardFee;
-import com.wzwl.kt.vo.PostCarCardChargeInfoVo;
-import com.wzwl.kt.vo.RechargeRuleInfoVo;
+import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
+import com.wzwl.kt.dto.PayCarCardFeeDTO;
+import com.wzwl.kt.dto.RechargeRuleInfoDTO;
 
 /**
  * @author huff
@@ -14,17 +13,17 @@ public interface RechargeService {
 
     /**
      * 获取充值规则
-     * @param rechargeRuleInfoVo
+     * @param rechargeRuleInfoDTO
      * @return
      */
-    String getRechargeRules(RechargeRuleInfoVo rechargeRuleInfoVo);
+    String getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO);
 
     /**
      * 固定车充值接口
-     * @param payCarCardFee
+     * @param payCarCardFeeDTO
      * @return
      */
-    String getFixedCarInfo(PayCarCardFee payCarCardFee);
+    String getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO);
 
 
     /**
@@ -32,12 +31,5 @@ public interface RechargeService {
      * @param fixedCarChargeRecordVo
      * @return
      */
-    String getChargeRecords(FixedCarChargeRecordVo fixedCarChargeRecordVo);
-
-    /**
-     * 车场固定车充值信息上报
-     * @param postCarCardChargeInfoVo
-     * @return
-     */
-    String postCarCardChargeInfo(PostCarCardChargeInfoVo postCarCardChargeInfoVo);
+    String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordVo);
 }

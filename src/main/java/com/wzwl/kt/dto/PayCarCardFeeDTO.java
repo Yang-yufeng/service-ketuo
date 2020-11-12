@@ -1,4 +1,4 @@
-package com.wzwl.kt.vo;
+package com.wzwl.kt.dto;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  * @date 2020/11/12 15:41
  */
 @Data
-public class PayCarCardFee extends BaseDTO {
+public class PayCarCardFeeDTO extends BaseDTO {
 
     /**
      * 当前操作用户ID

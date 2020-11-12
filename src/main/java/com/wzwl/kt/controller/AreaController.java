@@ -1,7 +1,7 @@
 package com.wzwl.kt.controller;
 
 import com.wzwl.kt.service.AreaService;
-import com.wzwl.kt.vo.BaseDTO;
+import com.wzwl.kt.dto.BaseDTO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

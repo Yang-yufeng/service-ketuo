@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.common.*;
 import com.wzwl.kt.constants.RequestUrlConstants;
 import com.wzwl.kt.service.ParkingLotService;
-import com.wzwl.kt.vo.DeviceReqDTO;
-import com.wzwl.kt.vo.ParkingLotReqDTO;
-import com.wzwl.kt.vo.PassageReqDTO;
+import com.wzwl.kt.dto.DeviceReqDTO;
+import com.wzwl.kt.dto.ParkingLotReqDTO;
+import com.wzwl.kt.dto.PassageReqDTO;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
