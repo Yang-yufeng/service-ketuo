@@ -6,9 +6,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
- * 固定车充值记录
- * @author huff
- * @date 2020/11/12 15:58
+ * @ClassName FixedCarChargeRecordDTO
+ * @Description TODO
+ * @Author huff
+ * @Date 2020/11/12 18:17
+ * @Version 1.0
  */
 @Data
 public class FixedCarChargeRecordDTO {
@@ -43,7 +45,5 @@ public class FixedCarChargeRecordDTO {
      */
     @NotNull(message = "每一页数量不能为空")
     private int pageSize;
-
-
 
 }

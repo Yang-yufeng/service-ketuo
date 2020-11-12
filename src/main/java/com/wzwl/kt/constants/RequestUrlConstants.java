@@ -41,15 +41,25 @@ public class RequestUrlConstants {
      */
     public static final String GET_FREE_LOTS_URL="http://kp-open.keytop.cn/unite-api/api/wec/GetFreeSpaceNum";
 
+    /**
+     * 获取区域信息
+     */
     public static final String GET_AREA_INFO="http://IP:123/api/wec/GetParkingPlaceArea";
 
+    /**
+     * 获取充值规则
+     */
     public static final String GET_RECHARGE_RULES="http://IP:123/api/wec/GetCarCardRule";
 
+    /**
+     * 固定车充值
+     */
     public static final String Pay_Car_Card_Fee="http://IP:123/api/wec/PayCarCardFee";
 
+    /**
+     * 固定车充值信息上报
+     */
     public static final String GET_FIXED_CAR_CHARGE_RECORDS="http://IP:123/api/wec/GetCarCardChargeList";
-
-
 
     /**
      * 获取通道信息

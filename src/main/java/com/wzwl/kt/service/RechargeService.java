@@ -1,13 +1,15 @@
 package com.wzwl.kt.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
 import com.wzwl.kt.dto.PayCarCardFeeDTO;
 import com.wzwl.kt.dto.RechargeRuleInfoDTO;
 
 /**
- * @author huff
- * @date 2020/11/12 14:31
+ * @ClassName RechargeService
+ * @Description TODO
+ * @Author huff
+ * @Date 2020/11/12 18:24
+ * @Version 1.0
  */
 public interface RechargeService {
 
@@ -32,4 +34,5 @@ public interface RechargeService {
      * @return
      */
     String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordVo);
+
 }

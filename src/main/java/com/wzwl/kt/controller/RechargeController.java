@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * 充值相关api
+ * @ClassName RechargeController
+ * @Description 充值相关api
  * @author huff
  * @date 2020/11/12 14:29
+ * @Version 1.0
  */
 @RestController
 @RequestMapping("/recharge")

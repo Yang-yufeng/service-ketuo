@@ -6,11 +6,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author huff
- * @date 2020/11/12 15:41
+ * @ClassName PayCarCardFeeDTO
+ * @Description TODO
+ * @Author huff
+ * @Date 2020/11/12 18:18
+ * @Version 1.0
  */
 @Data
-public class PayCarCardFeeDTO extends BaseDTO {
+public class PayCarCardFeeDTO {
 
     /**
      * 当前操作用户ID

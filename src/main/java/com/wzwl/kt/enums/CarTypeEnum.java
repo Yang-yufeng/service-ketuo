@@ -1,10 +1,13 @@
 package com.wzwl.kt.enums;
 
 /**
- * @author huff
- * @date 2020/11/12 15:17
+ * @ClassName CarTypeEnum
+ * @Description TODO
+ * @Author huff
+ * @Date 2020/11/12 18:19
+ * @Version 1.0
  */
-public enum  CarTypeEnum {
+public enum CarTypeEnum {
 
     TEMPORARY_CAR(0, "临时车"),
 
@@ -35,7 +38,7 @@ public enum  CarTypeEnum {
 
     public String carTypeName;
 
-    private CarTypeEnum(int code,String codeDesc) {
+    private CarTypeEnum(int code, String codeDesc) {
         this.carTypeCode = code;
         this.carTypeName = codeDesc;
     }

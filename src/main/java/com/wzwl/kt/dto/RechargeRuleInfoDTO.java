@@ -3,15 +3,18 @@ package com.wzwl.kt.dto;
 import lombok.Data;
 
 /**
- * @author huff
- * @date 2020/11/12 14:55
+ * @ClassName RechargeRuleInfoDTO
+ * @Description TODO
+ * @Author huff
+ * @Date 2020/11/12 18:18
+ * @Version 1.0
  */
 @Data
-public class RechargeRuleInfoDTO extends BaseDTO {
+public class RechargeRuleInfoDTO {
 
     /**
      * 固定车类型
      */
-    private int carType;
+    private Integer carType;
 
 }

@@ -3,8 +3,11 @@ package com.wzwl.kt.service;
 import com.wzwl.kt.dto.BaseDTO;
 
 /**
- * @author huff
- * @date 2020/11/12 13:40
+ * @ClassName AreaService
+ * @Description TODO
+ * @Author huff
+ * @Date 2020/11/12 18:22
+ * @Version 1.0
  */
 public interface AreaService {
 
@@ -14,4 +17,5 @@ public interface AreaService {
      * @return
      */
     String getAreaData(BaseDTO baseDTO);
+
 }
