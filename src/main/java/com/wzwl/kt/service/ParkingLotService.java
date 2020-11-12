@@ -3,7 +3,7 @@ package com.wzwl.kt.service;
 
 import com.wzwl.kt.vo.DeviceReqDTO;
 import com.wzwl.kt.vo.ParkingLotReqDTO;
-import com.wzwl.kt.vo.PassageRequestVO;
+import com.wzwl.kt.vo.PassageReqDTO;
 import org.springframework.validation.annotation.Validated;
 
 import java.text.ParseException;
@@ -85,17 +85,17 @@ public interface ParkingLotService {
 
     /**
      *通道信息查询
-     * @param passageRequestVo 封装通道信息请求对象
+     * @param passageReqDTO 封装通道信息请求对象
      * @return
      */
-    String listPassages(PassageRequestVO passageRequestVo);
+    String listPassages(PassageReqDTO passageReqDTO);
 
     /**
      * 设备信息查询
-     * @param deviceRequestVO 封装设备信息请求对象
+     * @param deviceRequestDTO 封装设备信息请求对象
      * @return
      */
-    String listDevices(DeviceReqDTO deviceRequestVO);
+    String listDevices(DeviceReqDTO deviceRequestDTO);
 
 
     /**

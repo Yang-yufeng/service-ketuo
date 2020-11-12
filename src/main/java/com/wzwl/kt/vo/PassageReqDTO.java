@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @Version 1.0
  */
 @Data
-public class PassageRequestVO extends BaseDTO {
+public class PassageReqDTO extends BaseDTO {
 
 
     @NotNull(message="page不能为空")
