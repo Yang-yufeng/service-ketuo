@@ -1,7 +1,10 @@
 package com.wzwl.kt.service;
 
 
-import org.springframework.web.bind.annotation.RequestParam;
+import com.wzwl.kt.vo.DeviceReqDTO;
+import com.wzwl.kt.vo.ParkingLotReqDTO;
+import com.wzwl.kt.vo.PassageRequestVO;
+import org.springframework.validation.annotation.Validated;
 
 import java.text.ParseException;
 
@@ -79,4 +82,26 @@ public interface ParkingLotService {
      */
     String carChargeReport(String appId, String key, Integer parkId, String ts, String reqId, String entryTime, String payTime, Integer paidMoney,
                            String plateNo, String cardNo) throws ParseException;
+
+    /**
+     *通道信息查询
+     * @param passageRequestVo 封装通道信息请求对象
+     * @return
+     */
+    String listPassages(PassageRequestVO passageRequestVo);
+
+    /**
+     * 设备信息查询
+     * @param deviceRequestVO 封装设备信息请求对象
+     * @return
+     */
+    String listDevices(DeviceReqDTO deviceRequestVO);
+
+
+    /**
+     *
+     * @param parkingLotReqDTO  封装停车场信息请求对象
+     * @return
+     */
+    String listParkingLots(@Validated ParkingLotReqDTO parkingLotReqDTO);
 }

@@ -1,6 +1,6 @@
 package com.wzwl.kt.service;
 
-import com.wzwl.kt.vo.BaseVO;
+import com.wzwl.kt.vo.BaseDTO;
 
 /**
  * @author huff
@@ -13,5 +13,5 @@ public interface AreaService {
      * @param baseVO
      * @return
      */
-    String getAreaData(BaseVO baseVO);
+    String getAreaData(BaseDTO baseVO);
 }

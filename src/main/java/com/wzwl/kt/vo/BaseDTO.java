@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  * @Version 1.0
  */
 @Data
-public abstract class BaseVO {
+public abstract class BaseDTO {
 
     @NotNull(message="appId不能为空")
     private String appId;

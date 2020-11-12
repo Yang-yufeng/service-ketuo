@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.common.*;
 import com.wzwl.kt.constants.RequestUrlConstants;
 import com.wzwl.kt.service.ParkingLotService;
+import com.wzwl.kt.vo.DeviceReqDTO;
+import com.wzwl.kt.vo.ParkingLotReqDTO;
+import com.wzwl.kt.vo.PassageRequestVO;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -230,6 +233,24 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         }
         ResultEntity result=new ResultEntity(ResultEnum.SUCCESS);
         return result.toString();
+    }
+
+    @Override
+    public String listPassages(PassageRequestVO passageRequestVo) {
+        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PASSAGES_URL, (JSONObject) JSONObject.toJSON(passageRequestVo));
+        return  result;
+    }
+
+    @Override
+    public String listDevices(DeviceReqDTO deviceRequestVO) {
+        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_DEVICES_URL, (JSONObject) JSONObject.toJSON(deviceRequestVO));
+        return  result;
+    }
+
+    @Override
+    public String listParkingLots(ParkingLotReqDTO parkingLotReqDTO) {
+        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PARKINGLOTS_URL, (JSONObject) JSONObject.toJSON(parkingLotReqDTO));
+        return  result;
     }
 
 

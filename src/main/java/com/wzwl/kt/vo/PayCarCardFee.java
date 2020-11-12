@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  * @date 2020/11/12 15:41
  */
 @Data
-public class PayCarCardFee extends BaseVO{
+public class PayCarCardFee extends BaseDTO {
 
     /**
      * 当前操作用户ID

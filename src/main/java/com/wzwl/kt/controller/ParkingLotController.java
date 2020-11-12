@@ -2,20 +2,16 @@ package com.wzwl.kt.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.wzwl.kt.common.ResultEntity;
-import com.wzwl.kt.common.ResultEnum;
 import com.wzwl.kt.service.ParkingLotService;
-import com.wzwl.kt.vo.TestVo;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+import com.wzwl.kt.vo.DeviceReqDTO;
+import com.wzwl.kt.vo.ParkingLotReqDTO;
+import com.wzwl.kt.vo.PassageRequestVO;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,7 +40,7 @@ public class ParkingLotController {
      * @throws ParseException 格式化异常
      */
     @RequestMapping("/PostCarInInfo")
-    public String carInReport(HttpServletRequest request) throws ParseException, IOException,MethodArgumentNotValidException {
+    public String carInReport(HttpServletRequest request) throws ParseException, IOException {
         BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), "UTF-8"));
         String param= null;
         StringBuilder responseStrBuilder = new StringBuilder();
@@ -142,13 +138,47 @@ public class ParkingLotController {
         return parkingLotService.carChargeReport(appId, key, parkId, ts, reqId, entryTime, payTime, paidMoney, plateNo, cardNo);
     }
 
+
+    /**
+     * 获取停车场信息
+     * @param parkingLotReqDTO 封装停车场信息请求对象
+     * @return
+     */
+    @RequestMapping("/listParkingLots")
+    public String listParkingLots(@Validated ParkingLotReqDTO parkingLotReqDTO){
+        return "";
+    }
+
+    /**
+     * 获取停车场通道信息
+     * @param passageRequestVo 封装通道信息请求对象
+     * @return
+     */
+    @RequestMapping("/listParkingLots")
+    public String listPassages(@Validated PassageRequestVO passageRequestVo){
+        return parkingLotService.listPassages(passageRequestVo);
+    }
+
+    /**
+     * 获取停车场设备信息
+     * @param deviceRequestVO 封装设备信息请求对象
+     * @return
+     */
+    @RequestMapping("/listDevices")
+    public String listDevices(@Validated DeviceReqDTO deviceRequestVO){
+        return parkingLotService.listDevices(deviceRequestVO);
+    }
+
+
+
+
     /**
      * ping测试
      *
      * @return
      */
     @RequestMapping("/ping")
-    public String ping( @Validated TestVo tv)throws MethodArgumentNotValidException {
+    public String ping() {
 
         return "Ping Success!";
     }

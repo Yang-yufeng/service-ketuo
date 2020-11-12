@@ -5,7 +5,7 @@ import com.wzwl.kt.common.HttpUtil;
 import com.wzwl.kt.common.ResponseUtil;
 import com.wzwl.kt.constants.RequestUrlConstants;
 import com.wzwl.kt.service.AreaService;
-import com.wzwl.kt.vo.BaseVO;
+import com.wzwl.kt.vo.BaseDTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class AreaServiceImpl implements AreaService {
 
     @Override
-    public String getAreaData(BaseVO baseVO) {
+    public String getAreaData(BaseDTO baseVO) {
 
         //调用api接口获取充值规则
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(baseVO));
