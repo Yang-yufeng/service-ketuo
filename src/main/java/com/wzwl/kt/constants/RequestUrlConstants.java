@@ -24,4 +24,14 @@ public class RequestUrlConstants {
 
     public static final String GET_FREE_LOTS_URL="http://kp-open.keytop.cn/unite-api/api/wec/GetFreeSpaceNum";
 
+    public static final String GET_AREA_INFO="http://IP:123/api/wec/GetParkingPlaceArea";
+
+    public static final String GET_RECHARGE_RULES="http://IP:123/api/wec/GetCarCardRule";
+
+    public static final String Pay_Car_Card_Fee="http://IP:123/api/wec/PayCarCardFee";
+
+    public static final String GET_FIXED_CAR_CHARGE_RECORDS="http://IP:123/api/wec/GetCarCardChargeList";
+
+
+
 }
