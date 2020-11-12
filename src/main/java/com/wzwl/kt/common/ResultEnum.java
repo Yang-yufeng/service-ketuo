@@ -22,6 +22,11 @@ public enum ResultEnum {
     DATA_REPORT_ERROR(8002, "数据上报错误"),
 
     /**
+     * 参数校验错误
+     **/
+    PARAMS_INVALID_ERROR(8003, "参数校验错误"),
+
+    /**
      * 成功
      **/
     SUCCESS(0, "操作成功");

@@ -86,7 +86,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         //System.out.println("总车位数====================="+totalLots);
         //System.out.println("空闲车位数====================="+freeLots);
         //再将数据上报到上层应用
-        //entryTime要转换成时间戳格式
+        ///entryTime要转换成时间戳格式
         Map<String, Object> reportMap=new HashMap<String, Object>();
         reportMap.put("companyId", companyId);
         reportMap.put("parkId", parkId);

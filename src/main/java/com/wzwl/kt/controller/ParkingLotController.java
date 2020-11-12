@@ -1,14 +1,21 @@
 package com.wzwl.kt.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.wzwl.kt.common.ResultEntity;
+import com.wzwl.kt.common.ResultEnum;
 import com.wzwl.kt.service.ParkingLotService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.wzwl.kt.vo.TestVo;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +44,7 @@ public class ParkingLotController {
      * @throws ParseException 格式化异常
      */
     @RequestMapping("/PostCarInInfo")
-    public String carInReport(HttpServletRequest request) throws ParseException, IOException {
+    public String carInReport(HttpServletRequest request) throws ParseException, IOException,MethodArgumentNotValidException {
         BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), "UTF-8"));
         String param= null;
         StringBuilder responseStrBuilder = new StringBuilder();
@@ -141,9 +148,12 @@ public class ParkingLotController {
      * @return
      */
     @RequestMapping("/ping")
-    public String ping() {
+    public String ping( @Validated TestVo tv)throws MethodArgumentNotValidException {
+
         return "Ping Success!";
     }
+
+
 
 
 }
