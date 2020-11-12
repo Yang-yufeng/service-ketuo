@@ -248,6 +248,12 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     }
 
     @Override
+    public String deviceStateReport(String appId, String key, Integer parkId, String ts, String reqId, String deviceCode, String deviceIp, String deviceName,
+                                    Integer deviceType, String status, String remark, String statusTime) {
+        return null;
+    }
+
+    @Override
     public String listParkingLots(ParkingLotReqDTO parkingLotReqDTO) {
         String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PARKINGLOTS_URL, (JSONObject) JSONObject.toJSON(parkingLotReqDTO));
         return  result;
