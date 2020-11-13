@@ -13,7 +13,8 @@ import javax.validation.constraints.NotNull;
  * @Version 1.0
  */
 @Data
-public class FixedCarChargeRecordDTO {
+public class FixedCarChargeRecordDTO extends BaseDTO{
+
 
     /**
      *车牌号

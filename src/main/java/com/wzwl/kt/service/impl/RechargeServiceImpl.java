@@ -1,13 +1,17 @@
 package com.wzwl.kt.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wzwl.kt.common.HttpUtil;
+import com.wzwl.kt.common.*;
 import com.wzwl.kt.constants.RequestUrlConstants;
 import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
 import com.wzwl.kt.dto.PayCarCardFeeDTO;
 import com.wzwl.kt.dto.RechargeRuleInfoDTO;
 import com.wzwl.kt.service.RechargeService;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * @ClassName RechargeServiceImpl
@@ -40,15 +44,42 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
 
     @Override
     public String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordDTO) {
-        //调用api接口获取充值规则
-        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(fixedCarChargeRecordDTO));
-        String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_FIXED_CAR_CHARGE_RECORDS,params);
 
-        return response;
+        //先查询企业以及配置信息
+        Map<String, Object> paramMap=new HashMap<String, Object>();
+        paramMap.put("configValue", fixedCarChargeRecordDTO.getAppId());
+        String response=HttpUtil.doPostRequest(RequestUrlConstants.GET_CONFIG_URL, paramMap);
+        JSONObject infoResponseJson=JSONObject.parseObject(response);
+        boolean isSuccess=infoResponseJson.getBoolean("success");
+        if (!isSuccess) {
+            ResultEntity result=new ResultEntity(ResultEnum.CONFIG_NOT_EXISTED);
+            return result.toString();
+        }
+
+        JSONObject data=infoResponseJson.getJSONObject("data");
+        String companyId=data.getString("companyId");
+        JSONObject configJson=data.getJSONObject("configInfo");
+        String appSecret=configJson.getString("appSecret");
+
+        //拿到配置（companyId）后将数据上报
+        String chargeRecords=null;
+
+        //再将数据上报到上层应用   //todo   待上层完成
+        Map<String, Object> reportMap=new HashMap<String, Object>();
+
+        String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.CAR_OUT_REPORT_URL, reportMap);
+        JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
+        boolean reportSuccess=reportResponseJson.getBoolean("success");
+        if (!reportSuccess) {
+            ResultEntity result=new ResultEntity(ResultEnum.DATA_REPORT_ERROR);
+            return result.toString();
+        }
+        ResultEntity result=new ResultEntity(ResultEnum.SUCCESS);
+        return result.toString();
     }
 
 
-    //todo  充值信息上报
+
 
 
 }
