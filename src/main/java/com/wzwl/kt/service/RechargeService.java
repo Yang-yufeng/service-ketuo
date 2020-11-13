@@ -35,4 +35,10 @@ public interface RechargeService {
      */
     String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordVo);
 
+    /**
+     * 车场固定车充值信息上报
+     * @param payCarCardFeeDTO
+     * @return
+     */
+    String postCarCardChargeInfo(PayCarCardFeeDTO payCarCardFeeDTO);
 }

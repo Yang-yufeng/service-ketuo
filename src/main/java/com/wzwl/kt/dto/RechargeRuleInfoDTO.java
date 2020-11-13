@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @ClassName RechargeRuleInfoDTO
- * @Description TODO
+ * @Description 充值规则
  * @Author huff
  * @Date 2020/11/12 18:18
  * @Version 1.0

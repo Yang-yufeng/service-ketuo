@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @ClassName FixedCarChargeRecordDTO
- * @Description TODO
+ * @Description 查询固定车充值记录
  * @Author huff
  * @Date 2020/11/12 18:17
  * @Version 1.0

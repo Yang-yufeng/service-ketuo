@@ -7,13 +7,13 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @ClassName PayCarCardFeeDTO
- * @Description TODO
+ * @Description 固定车充值上报
  * @Author huff
  * @Date 2020/11/12 18:18
  * @Version 1.0
  */
 @Data
-public class PayCarCardFeeDTO {
+public class PayCarCardFeeDTO extends BaseDTO{
 
     /**
      * 当前操作用户ID

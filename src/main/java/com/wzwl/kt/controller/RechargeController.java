@@ -65,13 +65,13 @@ public class RechargeController {
 
     /**
      * 车场固定车充值信息上报
-     * @param fixedCarChargeRecordDTO
+     * @param payCarCardFeeDTO
      * @return
      */
     @RequestMapping(value = "/postCarCardChargeInfo",method = RequestMethod.POST)
-    public String postCarCardChargeInfo(@RequestBody @Validated FixedCarChargeRecordDTO fixedCarChargeRecordDTO){
+    public String postCarCardChargeInfo(@RequestBody @Validated PayCarCardFeeDTO payCarCardFeeDTO){
 
-        return rechargeService.getChargeRecords(fixedCarChargeRecordDTO);
+        return rechargeService.postCarCardChargeInfo(payCarCardFeeDTO);
 
     }
 

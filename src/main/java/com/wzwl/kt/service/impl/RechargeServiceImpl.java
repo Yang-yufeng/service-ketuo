@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @ClassName RechargeServiceImpl
@@ -25,7 +24,6 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
 
     @Override
     public String getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO) {
-        //调用api接口获取充值规则
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(rechargeRuleInfoDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_RECHARGE_RULES,params);
 
@@ -35,7 +33,6 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
 
     @Override
     public String getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
-        //调用api接口获取充值规则
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(payCarCardFeeDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.Pay_Car_Card_Fee,params);
 
@@ -44,10 +41,18 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
 
     @Override
     public String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordDTO) {
+        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(fixedCarChargeRecordDTO));
+        String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_FIXED_CAR_RECHARGE_INFO,params);
 
+        return response;
+
+    }
+
+    @Override
+    public String postCarCardChargeInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
         //先查询企业以及配置信息
         Map<String, Object> paramMap=new HashMap<String, Object>();
-        paramMap.put("configValue", fixedCarChargeRecordDTO.getAppId());
+        paramMap.put("configValue", payCarCardFeeDTO.getAppId());
         String response=HttpUtil.doPostRequest(RequestUrlConstants.GET_CONFIG_URL, paramMap);
         JSONObject infoResponseJson=JSONObject.parseObject(response);
         boolean isSuccess=infoResponseJson.getBoolean("success");
@@ -67,7 +72,7 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         //再将数据上报到上层应用   //todo   待上层完成
         Map<String, Object> reportMap=new HashMap<String, Object>();
 
-        String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.CAR_OUT_REPORT_URL, reportMap);
+        String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, reportMap);
         JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
         boolean reportSuccess=reportResponseJson.getBoolean("success");
         if (!reportSuccess) {
@@ -77,9 +82,6 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         ResultEntity result=new ResultEntity(ResultEnum.SUCCESS);
         return result.toString();
     }
-
-
-
 
 
 }
