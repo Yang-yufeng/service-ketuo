@@ -1,14 +1,12 @@
 package com.wzwl.kt.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
 import com.wzwl.kt.dto.PayCarCardFeeDTO;
 import com.wzwl.kt.dto.RechargeRuleInfoDTO;
 import com.wzwl.kt.service.RechargeService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -65,13 +63,13 @@ public class RechargeController {
 
     /**
      * 车场固定车充值信息上报
-     * @param payCarCardFeeDTO
+     * @param jsonParams
      * @return
      */
-    @RequestMapping(value = "/postCarCardChargeInfo",method = RequestMethod.POST)
-    public String postCarCardChargeInfo(@RequestBody @Validated PayCarCardFeeDTO payCarCardFeeDTO){
+    @RequestMapping(value = "/PostCarCardChargeInfo",method = RequestMethod.POST)
+    public String postCarCardChargeInfo(@RequestParam JSONObject jsonParams){
 
-        return rechargeService.postCarCardChargeInfo(payCarCardFeeDTO);
+        return rechargeService.postCarCardChargeInfo(jsonParams);
 
     }
 

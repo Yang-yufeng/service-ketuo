@@ -64,7 +64,7 @@ public class RequestUrlConstants {
     /**
      * 固定车充值信息上报
      */
-    public static final String POST_FIXED_CAR_CHARGE_RECORDS="http://IP:123/api/wec/GetCarCardChargeList";
+    public static final String POST_FIXED_CAR_CHARGE_RECORDS="http://IP:123/recharge/reportRecords";
 
     /**
      * 获取通道信息

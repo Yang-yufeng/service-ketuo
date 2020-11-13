@@ -49,10 +49,10 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
     }
 
     @Override
-    public String postCarCardChargeInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
+    public String postCarCardChargeInfo(JSONObject jsonParams) {
         //先查询企业以及配置信息
         Map<String, Object> paramMap=new HashMap<String, Object>();
-        paramMap.put("configValue", payCarCardFeeDTO.getAppId());
+        paramMap.put("configValue", jsonParams.get("appId"));
         String response=HttpUtil.doPostRequest(RequestUrlConstants.GET_CONFIG_URL, paramMap);
         JSONObject infoResponseJson=JSONObject.parseObject(response);
         boolean isSuccess=infoResponseJson.getBoolean("success");
@@ -66,13 +66,14 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         JSONObject configJson=data.getJSONObject("configInfo");
         String appSecret=configJson.getString("appSecret");
 
-        //拿到配置（companyId）后将数据上报
-        String chargeRecords=null;
+        //todo   需要进行key值验证
 
-        //再将数据上报到上层应用   //todo   待上层完成
-        Map<String, Object> reportMap=new HashMap<String, Object>();
+        //再将数据上报到上层应用
+        JSONObject reportJson = new JSONObject();
+        reportJson.putAll(jsonParams);
+        reportJson.put("companyId",companyId);
 
-        String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, reportMap);
+        String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, reportJson);
         JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
         boolean reportSuccess=reportResponseJson.getBoolean("success");
         if (!reportSuccess) {
