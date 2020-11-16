@@ -38,7 +38,8 @@ public interface ParkingLotService {
      * @throws ParseException 格式化异常
      */
     String carInReport(String appId, String key, Integer parkId, String ts, String reqId, String trafficId, String entryTime, Integer carType,
-                       String entryPlace, String imgName, String plateNo, String cardNo, Integer freeLots, Integer totalLots) throws ParseException;
+                       String entryPlace, String imgName, String plateNo, String cardNo, Integer freeLots, Integer totalLots,Integer passType,
+                       String passRemark) throws ParseException;
 
     /**
      * 车辆出场上报
@@ -62,7 +63,8 @@ public interface ParkingLotService {
      * @throws ParseException 格式化异常
      */
     String carOutReport(String appId, String key, Integer parkId, String ts, String reqId, String trafficId, String entryTime, String leaveTime,
-                        Integer carType, String leavePlace, String imgName, Integer freeLots, Integer totalLots, String plateNo, String cardNo) throws ParseException;
+                        Integer carType, String leavePlace, String imgName, Integer freeLots, Integer totalLots, String plateNo, String cardNo,Integer passType,
+                        String passRemark) throws ParseException;
 
     /**
      * 收费记录上报
@@ -118,7 +120,7 @@ public interface ParkingLotService {
                              Integer deviceType,String status,String remark,String statusTime);
 
     /**
-     *
+     * 停车场信息查询
      * @param parkingLotReqDTO  封装停车场信息请求对象
      * @return
      */

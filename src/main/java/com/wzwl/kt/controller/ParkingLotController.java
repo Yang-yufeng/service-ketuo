@@ -66,8 +66,10 @@ public class ParkingLotController {
         String cardNo=jsonObject.getString("cardNo");
         Integer freeLots=jsonObject.getInteger("freeLots");
         Integer totalLots=jsonObject.getInteger("totalLots");
+        Integer passType=jsonObject.getInteger("passType");
+        String passRemark=jsonObject.getString("passRemark");
         return parkingLotService.carInReport(appId, key, parkId, ts, reqId, trafficId, entryTime, carType, entryPlace, imgName, plateNo,
-                cardNo, freeLots!=null?freeLots:0, totalLots!=null?totalLots:0);
+                cardNo, freeLots!=null?freeLots:0, totalLots!=null?totalLots:0,passType,passRemark);
     }
 
     /**
@@ -103,8 +105,10 @@ public class ParkingLotController {
         String imgName=jsonObject.getString("imgName");
         Integer freeLots=jsonObject.getInteger("freeLots");
         Integer totalLots=jsonObject.getInteger("totalLots");
+        Integer passType=jsonObject.getInteger("passType");
+        String passRemark=jsonObject.getString("passRemark");
         return parkingLotService.carOutReport(appId, key, parkId, ts, reqId, trafficId, entryTime, leaveTime, carType, leavePlace, imgName,
-                freeLots!=null?freeLots:0, totalLots!=null?totalLots:0, plateNo, cardNo);
+                freeLots!=null?freeLots:0, totalLots!=null?totalLots:0, plateNo, cardNo,passType,passRemark);
     }
 
     /**
@@ -144,6 +148,7 @@ public class ParkingLotController {
      * @return
      * @throws IOException
      */
+    @RequestMapping("/PostDeviceState")
     public String deviceStateReport(HttpServletRequest request) throws IOException {
         BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8));
         String param= null;
@@ -178,7 +183,7 @@ public class ParkingLotController {
      */
     @RequestMapping("/listParkingLots")
     public String listParkingLots(@Validated ParkingLotReqDTO parkingLotReqDTO){
-        return "";
+        return parkingLotService.listParkingLots(parkingLotReqDTO);
     }
 
     /**

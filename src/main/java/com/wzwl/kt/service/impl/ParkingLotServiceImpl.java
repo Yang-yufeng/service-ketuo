@@ -27,7 +27,8 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public String carInReport(String appId, String key, Integer parkId, String ts, String reqId, String trafficId, String entryTime, Integer carType,
-                              String entryPlace, String imgName, String plateNo, String cardNo, Integer freeLots, Integer totalLots) throws ParseException {
+                              String entryPlace, String imgName, String plateNo, String cardNo, Integer freeLots, Integer totalLots,Integer passType,
+                              String passRemark) throws ParseException {
         plateNo=(plateNo != null && !"".equals(plateNo)) ? plateNo : null;
         cardNo=(cardNo != null && !"".equals(cardNo)) ? cardNo : null;
         //先查询企业以及配置信息
@@ -100,6 +101,8 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         reportMap.put("cardType", carType);
         reportMap.put("entryImage", imgUrl);
         reportMap.put("useSpace", totalLots - freeLots);
+        reportMap.put("entryPassType",passType);
+        reportMap.put("entryPassRemark",passRemark);
         String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.CAR_IN_REPORT_URL, reportMap);
         JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
         boolean reportSuccess=reportResponseJson.getBoolean("success");
@@ -112,7 +115,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     }
 
     @Override
-    public String carOutReport(String appId, String key, Integer parkId, String ts, String reqId, String trafficId, String entryTime, String leaveTime, Integer carType, String leavePlace, String imgName, Integer freeLots, Integer totalLots, String plateNo, String cardNo) throws ParseException {
+    public String carOutReport(String appId, String key, Integer parkId, String ts, String reqId, String trafficId, String entryTime, String leaveTime,
+                               Integer carType, String leavePlace, String imgName, Integer freeLots, Integer totalLots, String plateNo, String cardNo,
+                               Integer passType, String passRemark) throws ParseException {
         plateNo=(plateNo != null && !"".equals(plateNo)) ? plateNo : null;
         cardNo=(cardNo != null && !"".equals(cardNo)) ? cardNo : null;
         //先查询企业以及配置信息
@@ -184,6 +189,8 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         reportMap.put("exitName", leavePlace);
         reportMap.put("exitImage", imgUrl);
         reportMap.put("useSpace", totalLots - freeLots);
+        reportMap.put("exitPassType",passType);
+        reportMap.put("exitPassRemark",passRemark);
         String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.CAR_OUT_REPORT_URL, reportMap);
         JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
         boolean reportSuccess=reportResponseJson.getBoolean("success");
