@@ -1,7 +1,10 @@
 package com.wzwl.kt.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.wzwl.kt.common.HttpUtil;
 import com.wzwl.kt.common.SignUtil;
+import com.wzwl.kt.constants.RequestUrlConstants;
 import com.wzwl.kt.dto.BaseDTO;
 import com.wzwl.kt.dto.DeviceReqDTO;
 import com.wzwl.kt.service.AreaService;
@@ -14,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
 
+import java.awt.event.WindowFocusListener;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
@@ -41,20 +45,34 @@ public class AreaServiceImplTest {
                 return super.toString();
             }
         };
-        baseDTO.setAppId("10156");
-        baseDTO.setParkId(115);
+        //测试
+        baseDTO.setAppId("10031");
+        baseDTO.setParkId(592011251);
+        //正式
+        //baseDTO.setAppId("10156");
+        //baseDTO.setParkId(115);
         baseDTO.setReqId(UUID.randomUUID().toString().replace("-", ""));
         baseDTO.setServiceCode("getParkingPlaceArea");
         baseDTO.setTs(System.currentTimeMillis() + "");
-        String key= SignUtil.paramsSign((JSONObject) JSONObject.toJSON(baseDTO), "cba9dccc39e247c6afe53157b96422b2");
+        //测试key
+        String key= SignUtil.paramsSign((JSONObject) JSONObject.toJSON(baseDTO), "9d682649d9f64faeb5e4477a8e27858e");
+        //String key= SignUtil.paramsSign((JSONObject) JSONObject.toJSON(baseDTO), "cba9dccc39e247c6afe53157b96422b2");
         baseDTO.setKey(key);
-        log.info("请求参数为:{}",baseDTO);
-        String response = areaService.getAreaData(baseDTO);
-        log.info(response);
+        //测试地址
+        String url = "https://tsktapps.keytop.cn/unite-api/api/wec/GetParkingPlaceArea";
+        log.info("请求地址为:{}",url);
+        log.info("请求参数为:{}",JSONObject.toJSONString(baseDTO));
+        JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(baseDTO));
+        String response =  HttpUtil.doPostRequestJson(url,params);
+        //String response = areaService.getAreaData(baseDTO);
+        log.info("响应结果:"+response);
         JSONObject result = JSONObject.parseObject(response);
-        log.info("停车场区域数为:{}",result.get("parkArea"));
-        log.info("停车场总停车位为:{}",result.get("totalPlaceCount"));
-        log.info("停车场区域信息为:{}",result.get("areaInfo"));
+        JSONObject data = result.getJSONObject("data");
+        log.info("返回结果为:{}",data.toJSONString());
+        /*log.info("停车场区域数为:{}",data.getString("parkArea"));
+        log.info("停车场总停车位为:{}",data.getIntValue("totalPlaceCount"));
+        JSONArray array = data.getJSONArray("areaInfo");
+        log.info("停车场区域信息为:{}",array.toJSONString());*/
 
     }
 }

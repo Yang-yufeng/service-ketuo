@@ -74,7 +74,7 @@ public class RequestUrlConstants {
     /**
      * 获取设备信息
      */
-    public static final String GET_DEVICES_URL="http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode";
+    public static final String GET_DEVICES_URL="http://kp-open.keytop.cn/unite-api/api/wec/GetDeviceList";
 
     /**
      * 获取停车场信息

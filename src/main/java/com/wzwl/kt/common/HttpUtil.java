@@ -121,7 +121,7 @@ public class HttpUtil {
         CloseableHttpClient httpclient=HttpClients.createDefault();
         // 实例化post方法
         HttpPost httpPost=new HttpPost(url);
-        String response= "";
+        String content= "";
         try {
             StringEntity se=new StringEntity(json.toString(), "UTF-8");
             se.setContentType("application/json");
@@ -129,10 +129,12 @@ public class HttpUtil {
             httpPost.setHeader("version","1.0.0");
             httpPost.setEntity(se);
             // 执行post方法
-            //ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            CloseableHttpResponse response1 = httpclient.execute(httpPost);
-            HttpEntity entity = response1.getEntity();
-            response=EntityUtils.toString(entity,"UTF-8");
+            CloseableHttpResponse response = httpclient.execute(httpPost);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                content=EntityUtils.toString(response.getEntity(), "utf-8");
+            }else {
+                LOGGER.error("请求异常，状态码为:{}",response.getStatusLine().getStatusCode());
+            }
         } catch (HttpResponseException e) {
             LOGGER.error("请求异常:", e);
             LOGGER.error("请求异常:", e.getCause());
@@ -142,7 +144,7 @@ public class HttpUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return response;
+        return content;
     }
 
 
