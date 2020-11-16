@@ -44,27 +44,27 @@ public class RequestUrlConstants {
     /**
      * 获取区域信息
      */
-    public static final String GET_AREA_INFO="http://IP:123/api/wec/GetParkingPlaceArea";
+    public static final String GET_AREA_INFO="http://kp-open.keytop.cn/unite-api/api/wec/GetParkingPlaceArea";
 
     /**
      * 获取充值规则
      */
-    public static final String GET_RECHARGE_RULES="http://IP:123/api/wec/GetCarCardRule";
+    public static final String GET_RECHARGE_RULES="http://kp-open.keytop.cn/unite-api/api/wec/GetCarCardRule";
 
     /**
      * 固定车充值
      */
-    public static final String Pay_Car_Card_Fee="http://IP:123/api/wec/PayCarCardFee";
+    public static final String Pay_Car_Card_Fee="http://kp-open.keytop.cn/unite-api/api/wec/PayCarCardFee";
 
     /**
      * 查询固定车充值信息
      */
-    public static final String GET_FIXED_CAR_RECHARGE_INFO="http://IP:123/api/wec/GetCarCardChargeList";
+    public static final String GET_FIXED_CAR_RECHARGE_INFO="http://kp-open.keytop.cn/unite-api/api/wec/GetCarCardChargeList";
 
     /**
      * 固定车充值信息上报
      */
-    public static final String POST_FIXED_CAR_CHARGE_RECORDS="http://IP:123/recharge/reportRecords";
+    public static final String POST_FIXED_CAR_CHARGE_RECORDS="http://kp-open.keytop.cn/unite-api/recharge/reportRecords";
 
     /**
      * 获取通道信息

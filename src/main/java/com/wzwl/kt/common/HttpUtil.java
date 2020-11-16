@@ -129,8 +129,10 @@ public class HttpUtil {
             httpPost.setHeader("version","1.0.0");
             httpPost.setEntity(se);
             // 执行post方法
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            response=httpclient.execute(httpPost,responseHandler);
+            //ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            CloseableHttpResponse response1 = httpclient.execute(httpPost);
+            HttpEntity entity = response1.getEntity();
+            response=EntityUtils.toString(entity,"UTF-8");
         } catch (HttpResponseException e) {
             LOGGER.error("请求异常:", e);
             LOGGER.error("请求异常:", e.getCause());

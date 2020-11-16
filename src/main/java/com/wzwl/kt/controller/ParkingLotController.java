@@ -186,16 +186,16 @@ public class ParkingLotController {
         return parkingLotService.listParkingLots(parkingLotReqDTO);
     }
 
-    /**
+   /* *//**
      * 获取停车场通道信息
      * @param passageReqDTO 封装通道信息请求对象
      * @return
-     */
+     *//*
     @RequestMapping("/listParkingLots")
     public String listPassages(@Validated PassageReqDTO passageReqDTO){
         return parkingLotService.listPassages(passageReqDTO);
     }
-
+*/
     /**
      * 获取停车场设备信息
      * @param deviceRequestVO 封装设备信息请求对象
