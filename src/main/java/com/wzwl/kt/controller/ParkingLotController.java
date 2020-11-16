@@ -191,7 +191,7 @@ public class ParkingLotController {
      * @param passageReqDTO 封装通道信息请求对象
      * @return
      *//*
-    @RequestMapping("/listParkingLots")
+    @RequestMapping("/listPassages")
     public String listPassages(@Validated PassageReqDTO passageReqDTO){
         return parkingLotService.listPassages(passageReqDTO);
     }

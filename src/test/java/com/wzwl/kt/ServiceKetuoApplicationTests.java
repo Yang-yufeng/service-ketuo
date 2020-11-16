@@ -72,17 +72,38 @@ public class ServiceKetuoApplicationTests {
         passageReqDTO.setReqId(UUID.randomUUID().toString().replace("-", ""));
         passageReqDTO.setTs(System.currentTimeMillis() + "");
         passageReqDTO.setPageIndex(1);
-        passageReqDTO.setPageSize(100);
+        passageReqDTO.setPageSize(10);
         String key=SignUtil.paramsSign((JSONObject) JSONObject.toJSON(passageReqDTO), "cba9dccc39e247c6afe53157b96422b2");
         passageReqDTO.setKey(key);
-        String freeLotsResponse=HttpUtil.doPostRequestJson("http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode", (JSONObject) JSONObject.toJSON(passageReqDTO));
-        System.out.println("车位数请求结果====================" + freeLotsResponse);
+        String passagesResponse=HttpUtil.doPostRequestJson("http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode", (JSONObject) JSONObject.toJSON(passageReqDTO));
+        System.out.println("通道信息数请求结果====================" + passagesResponse);
         System.out.println((JSONObject) JSONObject.toJSON(passageReqDTO));
-        JSONObject freeLotsResponseJson=JSONObject.parseObject(freeLotsResponse);
+        JSONObject freeLotsResponseJson=JSONObject.parseObject(passagesResponse);
         JSONObject dataJson=freeLotsResponseJson.getJSONObject("data");
-        System.out.println("总车位数=====================" + dataJson.getInteger("totalNum"));
-        System.out.println("空闲车位数=====================" + dataJson.getInteger("freeSpaceNum"));
+        //System.out.println("总车位数=====================" + dataJson.getInteger("totalNum"));
+        //System.out.println("空闲车位数=====================" + dataJson.getInteger("freeSpaceNum"));
     }
+    @Test
+    public void testGetPassages1(){
+        PassageReqDTO passageReqDTO= new PassageReqDTO();
+        passageReqDTO.setAppId("10031");
+        passageReqDTO.setParkId(592011251);
+        passageReqDTO.setServiceCode("getParkingNode");
+        passageReqDTO.setReqId(UUID.randomUUID().toString().replace("-", ""));
+        passageReqDTO.setTs(System.currentTimeMillis() + "");
+        passageReqDTO.setPageIndex(1);
+        passageReqDTO.setPageSize(100);
+        String key=SignUtil.paramsSign((JSONObject) JSONObject.toJSON(passageReqDTO), "9d682649d9f64faeb5e4477a8e27858e");
+        passageReqDTO.setKey(key);
+        String passagesResponse=HttpUtil.doPostRequestJson("https://tsktapps.keytop.cn/unite-api/api/wec/GetParkingNode", (JSONObject) JSONObject.toJSON(passageReqDTO));
+        System.out.println("通道信息数请求结果====================" + passagesResponse);
+        System.out.println((JSONObject) JSONObject.toJSON(passageReqDTO));
+        JSONObject freeLotsResponseJson=JSONObject.parseObject(passagesResponse);
+        JSONObject dataJson=freeLotsResponseJson.getJSONObject("data");
+        //System.out.println("总车位数=====================" + dataJson.getInteger("totalNum"));
+        //System.out.println("空闲车位数=====================" + dataJson.getInteger("freeSpaceNum"));
+    }
+
 
 
 
