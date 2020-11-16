@@ -64,7 +64,7 @@ public class RequestUrlConstants {
     /**
      * 固定车充值信息上报
      */
-    public static final String POST_FIXED_CAR_CHARGE_RECORDS="http://kp-open.keytop.cn/unite-api/recharge/reportRecords";
+    public static final String POST_FIXED_CAR_CHARGE_RECORDS="http://localhost:8001/recharge/reportRecords";
 
     /**
      * 获取通道信息
