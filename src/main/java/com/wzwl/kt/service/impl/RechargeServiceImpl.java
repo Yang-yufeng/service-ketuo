@@ -6,7 +6,6 @@ import com.wzwl.kt.common.*;
 import com.wzwl.kt.constants.RequestUrlConstants;
 import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
 import com.wzwl.kt.dto.PayCarCardFeeDTO;
-import com.wzwl.kt.dto.RechargeRecordDTO;
 import com.wzwl.kt.dto.RechargeRuleInfoDTO;
 import com.wzwl.kt.service.RechargeService;
 import lombok.extern.slf4j.Slf4j;
@@ -53,12 +52,12 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
     }
 
     @Override
-    public String postCarCardChargeInfo(RechargeRecordDTO dto) {
+    public String postCarCardChargeInfo(JSONObject params) {
         //先查询企业以及配置信息
         log.info("接收到车场固定车充值信息上报");
-        log.info("上报参数为【{}】",dto.toString());
+        log.info("上报参数为【{}】",params.toJSONString());
         Map<String, Object> paramMap=new HashMap<String, Object>();
-        paramMap.put("configValue", dto.getAppId());
+        paramMap.put("configValue", params.get("appId"));
         String response=HttpUtil.doPostRequest(RequestUrlConstants.GET_CONFIG_URL, paramMap);
         JSONObject infoResponseJson=JSONObject.parseObject(response);
         boolean isSuccess=infoResponseJson.getBoolean("success");
@@ -75,12 +74,15 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
 
         //再将数据上报到上层应用
         JSONObject reportJson = new JSONObject();
-        String temp = JSON.toJSONString(dto);
-        JSONObject object = JSONObject.parseObject(temp);
-        reportJson.putAll(new JSONObject(object));
+        reportJson.putAll(params);
         reportJson.put("companyId",companyId);
+        System.out.println(reportJson);
         log.info("上报地址为【{}】，上报参数为【{}】",RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS,reportJson);
-        String reportResponse=HttpUtil.doPostRequestJson(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, reportJson);
+
+        Map maps = (Map) JSON.parse(reportJson.toString());
+
+        String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, maps);
+        //String reportResponse=HttpUtil.doPost(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, maps,"utf-8");
         JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
         boolean reportSuccess=reportResponseJson.getBoolean("success");
         if (!reportSuccess) {
