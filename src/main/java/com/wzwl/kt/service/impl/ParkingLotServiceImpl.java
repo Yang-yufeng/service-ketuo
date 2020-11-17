@@ -261,7 +261,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public String listParkingLots(ParkingLotReqDTO parkingLotReqDTO) {
-        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PARKINGLOTS_URL, (JSONObject) JSONObject.toJSON(parkingLotReqDTO));
+        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PARKING_LOTS_URL, (JSONObject) JSONObject.toJSON(parkingLotReqDTO));
         return  result;
     }
 

@@ -79,6 +79,17 @@ public class RequestUrlConstants {
     /**
      * 获取停车场信息
      */
-    public static final String GET_PARKINGLOTS_URL="http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode";
+    public static final String GET_PARKING_LOTS_URL="http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode";
+
+    /**
+     * 获取空余车位数信息
+     */
+    public static final String GET_PARKING_SPACE="http://112.5.64.63:9099/api/find/GetFreeSpaceNum";
+
+    /**
+     * 查询车辆停放位置
+     */
+    public static final String GET_CAR_LOCATION="http://112.5.64.63:9099/api/find/GetCarLocList2";
+
 
 }

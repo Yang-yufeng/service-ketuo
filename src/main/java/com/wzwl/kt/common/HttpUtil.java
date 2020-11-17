@@ -1,6 +1,7 @@
 package com.wzwl.kt.common;
 
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
@@ -21,10 +22,8 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @ClassName HttpUtil
@@ -33,6 +32,7 @@ import java.util.Set;
  * @Date 2020/11/4 16:51
  * @Version 1.0
  */
+@Slf4j
 public class HttpUtil {
 
     private static final Logger LOGGER=LoggerFactory.getLogger(HttpUtil.class);
@@ -205,5 +205,90 @@ public class HttpUtil {
     }
 
 
+    /**
+     * 找车系统
+     * @param url
+     * @param user
+     * @param pwd
+     * @param data
+     * @return
+     */
+    public static String doFindCarPostRequest(String url, String user,String pwd,String data) {
+        CloseableHttpClient httpclient=HttpClients.createDefault();
+        // 实例化post方法
+        HttpPost httpPost=new HttpPost(url);
+        String content= "";
+        CloseableHttpResponse response = null;
+        try {
+            JSONObject dataJson = new JSONObject();
+            dataJson.put("data",data);
+            log.info("此次请求地址为【{}】,参数为【{}】",url,dataJson.toJSONString());
+            StringEntity se=new StringEntity(dataJson.toJSONString(), "UTF-8");
+            se.setContentType("application/json");
+            se.setContentEncoding("UTF-8");
+            httpPost.setHeader("user",user);
+            httpPost.setHeader("pwd",pwd);
+            httpPost.setEntity(se);
+            // 执行post方法
+            response = httpclient.execute(httpPost);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                content=EntityUtils.toString(response.getEntity(), "utf-8");
+            }else {
+                LOGGER.error("请求异常，状态码为:{}",response.getStatusLine().getStatusCode());
+            }
+
+        } catch (HttpResponseException e) {
+            LOGGER.error("请求异常:", e);
+            LOGGER.error("请求异常:", e.getCause());
+            LOGGER.error("请求异常:", e.getMessage());
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+    }
+
+
+    public static String doFindCarPostRequest(String url, String user, String pwd, String key, JSONObject data) {
+
+        CloseableHttpClient httpclient=HttpClients.createDefault();
+        // 实例化post方法
+        HttpPost httpPost=new HttpPost(url);
+        String content= "";
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        String secretIV = format.format(new Date());
+        String des3EncodeCBC = Des3Util.encrypt(key, secretIV, data.toJSONString());
+        CloseableHttpResponse response = null;
+        try {
+            JSONObject dataJson = new JSONObject();
+            dataJson.put("data",des3EncodeCBC);
+            log.info("此次请求地址为【{}】,参数为【{}】",url,dataJson.toJSONString());
+            StringEntity se=new StringEntity(dataJson.toJSONString(), "UTF-8");
+            se.setContentType("application/json");
+            se.setContentEncoding("UTF-8");
+            httpPost.setHeader("user",user);
+            httpPost.setHeader("pwd",pwd);
+            httpPost.setEntity(se);
+            // 执行post方法
+            response = httpclient.execute(httpPost);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                content=EntityUtils.toString(response.getEntity(), "utf-8");
+            }else {
+                LOGGER.error("请求异常，状态码为:{}",response.getStatusLine().getStatusCode());
+            }
+
+        } catch (HttpResponseException e) {
+            LOGGER.error("请求异常:", e);
+            LOGGER.error("请求异常:", e.getCause());
+            LOGGER.error("请求异常:", e.getMessage());
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+
+    }
 }
 

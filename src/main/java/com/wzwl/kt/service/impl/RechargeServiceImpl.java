@@ -79,10 +79,10 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         System.out.println(reportJson);
         log.info("上报地址为【{}】，上报参数为【{}】",RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS,reportJson);
 
-        Map maps = (Map) JSON.parse(reportJson.toString());
+        //Map maps = (Map) JSON.parse(reportJson.toString());
 
-        String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, maps);
-        //String reportResponse=HttpUtil.doPost(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, maps,"utf-8");
+        //String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, maps);
+        String reportResponse=HttpUtil.doPostRequestJson(RequestUrlConstants.POST_FIXED_CAR_CHARGE_RECORDS, reportJson);
         JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
         boolean reportSuccess=reportResponseJson.getBoolean("success");
         if (!reportSuccess) {
