@@ -1,5 +1,6 @@
 package com.wzwl.kt.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wzwl.kt.common.*;
 import com.wzwl.kt.constants.RequestUrlConstants;
@@ -50,7 +51,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         //调用科拓api获取图片信息,若获取失败继续上报
         String imgUrl=null;
         //获取图片信息
-        System.out.println("开始获取图片信息=================");
         try {
             JSONObject imageJson=new JSONObject();
             imageJson.put("appId", appId);
@@ -65,7 +65,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             String imageResponse=HttpUtil.doPostRequestJson(RequestUrlConstants.GET_IMAGE_URL, imageJson);
             JSONObject imageResponseJson=JSONObject.parseObject(imageResponse);
             imgUrl=imageResponseJson.getJSONObject("data").getString("imgUrl");
-            System.out.println("图片返回结果=================" + imgUrl);
         } catch (Exception e) {
             System.out.println("图片获取失败------数据继续上报");
         }
@@ -139,7 +138,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         //调用科拓api获取图片信息,若获取失败继续上报
         String imgUrl=null;
         //获取图片信息
-        System.out.println("开始获取图片信息=================");
         try {
             JSONObject imageJson=new JSONObject();
             imageJson.put("appId", appId);
@@ -154,7 +152,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             String imageResponse=HttpUtil.doPostRequestJson(RequestUrlConstants.GET_IMAGE_URL, imageJson);
             JSONObject imageResponseJson=JSONObject.parseObject(imageResponse);
             imgUrl=imageResponseJson.getJSONObject("data").getString("imgUrl");
-            System.out.println("图片返回结果=================" + imgUrl);
         } catch (Exception e) {
             System.out.println("图片获取失败------数据继续上报");
         }
@@ -229,11 +226,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         reportMap.put("entryTime", TimeUtil.dateToStamp(entryTime, "yyyy-MM-dd HH:mm:ss"));
         reportMap.put("payTime", TimeUtil.dateToStamp(payTime, "yyyy-MM-dd HH:mm:ss"));
         reportMap.put("payMoney", paidMoney);
-        System.out.println(reportMap);
         String reportResponse=HttpUtil.doPostRequest(RequestUrlConstants.CAR_CHARGE_REPORT_URL, reportMap);
         JSONObject reportResponseJson=JSONObject.parseObject(reportResponse);
         boolean reportSuccess=reportResponseJson.getBoolean("success");
-        System.out.println(reportResponseJson);
         if (!reportSuccess) {
             ResultEntity result=new ResultEntity(ResultEnum.DATA_REPORT_ERROR);
             return result.toString();
@@ -244,7 +239,11 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public String listPassages(PassageReqDTO passageReqDTO) {
-        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PASSAGES_URL, (JSONObject) JSONObject.toJSON(passageReqDTO));
+        JSONObject paramsJson =(JSONObject) JSON.toJSON(passageReqDTO);
+        String appsecret = "cba9dccc39e247c6afe53157b96422b2";
+        String key = SignUtil.paramsSign(paramsJson,appsecret);
+        paramsJson.put("key",key);
+        String result = HttpUtil.doPostRequestJson(RequestUrlConstants.GET_PASSAGES_URL,paramsJson);
         return  result;
     }
 

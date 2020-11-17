@@ -50,8 +50,6 @@ public class ParkingLotController {
         }
         JSONObject jsonObject = JSONObject.parseObject(responseStrBuilder.toString());
         param= jsonObject.toJSONString();
-        System.out.println("车辆进场上报");
-        System.out.println("上报参数================="+param);
         String appId=jsonObject.getString("appId");
         String key=jsonObject.getString("key");
         Integer parkId=jsonObject.getInteger("parkId");
@@ -88,8 +86,6 @@ public class ParkingLotController {
         }
         JSONObject jsonObject = JSONObject.parseObject(responseStrBuilder.toString());
         param= jsonObject.toJSONString();
-        System.out.println("车辆出场上报");
-        System.out.println("上报参数================="+param);
         String appId=jsonObject.getString("appId");
         String key=jsonObject.getString("key");
         Integer parkId=jsonObject.getInteger("parkId");
@@ -127,8 +123,6 @@ public class ParkingLotController {
         }
         JSONObject jsonObject = JSONObject.parseObject(responseStrBuilder.toString());
         param= jsonObject.toJSONString();
-        System.out.println("车辆缴费上报");
-        System.out.println("上报参数================="+param);
         String appId=jsonObject.getString("appId");
         String key=jsonObject.getString("key");
         Integer parkId=jsonObject.getInteger("parkId");
@@ -186,16 +180,16 @@ public class ParkingLotController {
         return parkingLotService.listParkingLots(parkingLotReqDTO);
     }
 
-   /* *//**
+   /**
      * 获取停车场通道信息
      * @param passageReqDTO 封装通道信息请求对象
      * @return
-     *//*
+     */
     @RequestMapping("/listPassages")
     public String listPassages(@Validated PassageReqDTO passageReqDTO){
         return parkingLotService.listPassages(passageReqDTO);
     }
-*/
+
     /**
      * 获取停车场设备信息
      * @param deviceRequestVO 封装设备信息请求对象

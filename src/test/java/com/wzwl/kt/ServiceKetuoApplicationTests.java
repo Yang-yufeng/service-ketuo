@@ -72,7 +72,7 @@ public class ServiceKetuoApplicationTests {
         passageReqDTO.setReqId(UUID.randomUUID().toString().replace("-", ""));
         passageReqDTO.setTs(System.currentTimeMillis() + "");
         passageReqDTO.setPageIndex(1);
-        passageReqDTO.setPageSize(10);
+        passageReqDTO.setPageSize(100);
         String key=SignUtil.paramsSign((JSONObject) JSONObject.toJSON(passageReqDTO), "cba9dccc39e247c6afe53157b96422b2");
         passageReqDTO.setKey(key);
         String passagesResponse=HttpUtil.doPostRequestJson("http://kp-open.keytop.cn/unite-api/api/wec/GetParkingNode", (JSONObject) JSONObject.toJSON(passageReqDTO));

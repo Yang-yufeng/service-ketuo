@@ -19,17 +19,17 @@ public class RequestUrlConstants {
     /**
      * 车辆进场上报
      */
-    public static final String CAR_IN_REPORT_URL="http://localhost:8001/v1/car_in";
+    public static final String CAR_IN_REPORT_URL="http://localhost:8001/v1/carIn";
 
     /**
      * 车辆出场上报
      */
-    public static final String CAR_OUT_REPORT_URL="http://localhost:8001/v1/car_out";
+    public static final String CAR_OUT_REPORT_URL="http://localhost:8001/v1/carOut";
 
     /**
      * 车辆缴费上报
      */
-    public static final String CAR_CHARGE_REPORT_URL="http://localhost:8001/v1/car_charge";
+    public static final String CAR_CHARGE_REPORT_URL="http://localhost:8001/v1/carCharge";
 
     /**
      * 获取图片

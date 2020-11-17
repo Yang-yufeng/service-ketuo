@@ -41,7 +41,6 @@ public class SignUtil {
                 });
         //拼接appSecret
         String temp=Joiner.on("&").withKeyValueSeparator("=").join(params).concat("&").concat(appSecret);
-        System.out.println("参与加密的内容============="+temp);
         return md5(temp).toUpperCase();
     }
 

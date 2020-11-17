@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/recharge")
+@RequestMapping("/v1")
 public class RechargeController {
 
     @Resource

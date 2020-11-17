@@ -17,7 +17,6 @@ public abstract class BaseDTO {
     @NotNull(message="appId不能为空")
     private String appId;
 
-    @NotNull(message="key不能为空")
     private String key;
 
     @NotNull(message="parkId不能为空")
