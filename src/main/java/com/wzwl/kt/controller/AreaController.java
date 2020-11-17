@@ -1,5 +1,6 @@
 package com.wzwl.kt.controller;
 
+import com.wzwl.kt.common.ResultEntity;
 import com.wzwl.kt.dto.BaseDTO;
 import com.wzwl.kt.service.AreaService;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +30,7 @@ public class AreaController {
      * @return
      */
     @RequestMapping(value = "/getAreaData",method = RequestMethod.POST)
-    public String getAreaData(@RequestBody @Validated BaseDTO baseVO){
+    public ResultEntity getAreaData(@RequestBody @Validated BaseDTO baseVO){
 
 
         return areaService.getAreaData(baseVO);

@@ -1,5 +1,6 @@
 package com.wzwl.kt.service;
 
+import com.wzwl.kt.common.ResultEntity;
 import com.wzwl.kt.dto.BaseDTO;
 
 /**
@@ -16,6 +17,6 @@ public interface AreaService {
      * @param baseDTO
      * @return
      */
-    String getAreaData(BaseDTO baseDTO);
+    ResultEntity getAreaData(BaseDTO baseDTO);
 
 }

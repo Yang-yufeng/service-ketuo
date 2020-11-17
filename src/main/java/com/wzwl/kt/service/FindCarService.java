@@ -17,7 +17,7 @@ public interface FindCarService {
      * 车位数查询（总车位数，已占有车位数，空闲车位数）
      * @return
      */
-    JSONObject selectParkingSpace();
+    ResultEntity selectParkingSpace();
 
     /**
      * 根据车牌查询停车场车辆停放信息
@@ -26,5 +26,5 @@ public interface FindCarService {
      * @param pageSize
      * @return
      */
-    JSONObject getCarLocalInfo(String plateNo, Integer pageIndex, Integer pageSize);
+    ResultEntity getCarLocalInfo(String plateNo, Integer pageIndex, Integer pageSize);
 }

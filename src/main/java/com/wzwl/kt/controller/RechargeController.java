@@ -1,6 +1,7 @@
 package com.wzwl.kt.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wzwl.kt.common.ResultEntity;
 import com.wzwl.kt.dto.FixedCarChargeRecordDTO;
 import com.wzwl.kt.dto.PayCarCardFeeDTO;
 import com.wzwl.kt.dto.RechargeRuleInfoDTO;
@@ -30,7 +31,7 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/getRechargeRules",method = RequestMethod.POST)
-    public String getRechargeRules(@RequestBody @Validated RechargeRuleInfoDTO rechargeRuleInfoDTO){
+    public ResultEntity getRechargeRules(@RequestBody @Validated RechargeRuleInfoDTO rechargeRuleInfoDTO){
 
         return rechargeService.getRechargeRules(rechargeRuleInfoDTO);
 
@@ -42,7 +43,7 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/getFixedCarInfo",method = RequestMethod.POST)
-    public String getFixedCarInfo(@RequestBody @Validated PayCarCardFeeDTO payCarCardFeeDTO){
+    public ResultEntity getFixedCarInfo(@RequestBody @Validated PayCarCardFeeDTO payCarCardFeeDTO){
 
         return rechargeService.getFixedCarInfo(payCarCardFeeDTO);
 
@@ -55,7 +56,7 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/getChargeRecords",method = RequestMethod.POST)
-    public String getChargeRecords(@RequestBody @Validated FixedCarChargeRecordDTO fixedCarChargeRecordDTO){
+    public ResultEntity getChargeRecords(@RequestBody @Validated FixedCarChargeRecordDTO fixedCarChargeRecordDTO){
 
         return rechargeService.getChargeRecords(fixedCarChargeRecordDTO);
 
@@ -67,7 +68,7 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/PostCarCardChargeInfo",method = RequestMethod.POST)
-    public String postCarCardChargeInfo(@RequestBody JSONObject params){
+    public ResultEntity postCarCardChargeInfo(@RequestBody JSONObject params){
 
         return rechargeService.postCarCardChargeInfo(params);
 

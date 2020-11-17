@@ -26,33 +26,38 @@ import java.util.Map;
 public class RechargeServiceImpl implements RechargeService {   //todo    返回值需要封装
 
     @Override
-    public String getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO) {
+    public ResultEntity getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO) {
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(rechargeRuleInfoDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_RECHARGE_RULES,params);
-
-        return response;
+        ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
+        entity.setData(response);
+        return entity;
     }
 
 
     @Override
-    public String getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
+    public ResultEntity getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(payCarCardFeeDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.Pay_Car_Card_Fee,params);
 
-        return response;
+        ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
+        entity.setData(response);
+        return entity;
     }
 
     @Override
-    public String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordDTO) {
+    public ResultEntity getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordDTO) {
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(fixedCarChargeRecordDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_FIXED_CAR_RECHARGE_INFO,params);
 
-        return response;
+        ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
+        entity.setData(response);
+        return entity;
 
     }
 
     @Override
-    public String postCarCardChargeInfo(JSONObject params) {
+    public ResultEntity postCarCardChargeInfo(JSONObject params) {
         //先查询企业以及配置信息
         log.info("接收到车场固定车充值信息上报");
         log.info("上报参数为【{}】",params.toJSONString());
@@ -63,7 +68,7 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         boolean isSuccess=infoResponseJson.getBoolean("success");
         if (!isSuccess) {
             ResultEntity result=new ResultEntity(ResultEnum.CONFIG_NOT_EXISTED);
-            return result.toString();
+            return result;
         }
         JSONObject data=infoResponseJson.getJSONObject("data");
         log.info("查询企业配置信息成功，为【{}】",data.toJSONString());
@@ -87,10 +92,10 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         boolean reportSuccess=reportResponseJson.getBoolean("success");
         if (!reportSuccess) {
             ResultEntity result=new ResultEntity(ResultEnum.DATA_REPORT_ERROR);
-            return result.toString();
+            return result;
         }
         ResultEntity result=new ResultEntity(ResultEnum.SUCCESS);
-        return result.toString();
+        return result;
     }
 
 
