@@ -40,11 +40,7 @@ public interface RechargeService {
     /**
      * 车场固定车充值信息上报
      * @param appId
-     * @param key
      * @param parkId
-     * @param serviceCode
-     * @param ts
-     * @param reqId
      * @param cardId
      * @param orderNo
      * @param carType
@@ -63,6 +59,6 @@ public interface RechargeService {
      * @param paySource
      * @return
      */
-    String postCarCardChargeInfo(String appId, String key, Integer parkId, String serviceCode, String ts, String reqId, Integer cardId, String orderNo, Integer carType, Integer payChannel, Integer chargeMethod, Integer chargeNumber, Integer amount, Integer freeNumber, String validFrom, String validTo, String createTime, String remark, Integer rechargeType, Integer operationType, String operator, String paySource);
+    String postCarCardChargeInfo(String appId,  Integer parkId, Integer cardId, String orderNo, Integer carType, Integer payChannel, Integer chargeMethod, Integer chargeNumber, Integer amount, Integer freeNumber, String validFrom, String validTo, String createTime, String remark, Integer rechargeType, Integer operationType, String operator, String paySource);
 
 }

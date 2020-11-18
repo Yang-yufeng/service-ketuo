@@ -96,11 +96,10 @@ public class RechargeController {
         System.out.println("月租车充值上报");
         System.out.println("上报参数================="+jsonObject);
         String appId = jsonObject.getString("appId");
-        String key = jsonObject.getString("key");
         Integer parkId = jsonObject.getInteger("parkId");
-        String serviceCode = jsonObject.getString("serviceCode");
+       /* String key = jsonObject.getString("key");
         String ts = jsonObject.getString("ts");
-        String reqId = jsonObject.getString("reqId");
+        String reqId = jsonObject.getString("reqId");*/
         Integer cardId = jsonObject.getInteger("cardId");
         String orderNo = jsonObject.getString("orderNo");
         Integer carType = jsonObject.getInteger("carType");
@@ -117,7 +116,7 @@ public class RechargeController {
         Integer operationType = jsonObject.getInteger("operationType");
         String operator = jsonObject.getString("operator");
         String paySource = jsonObject.getString("paySource");
-        return rechargeService.postCarCardChargeInfo(appId,key,parkId,serviceCode,ts,reqId,cardId,orderNo,carType,payChannel,chargeMethod,
+        return rechargeService.postCarCardChargeInfo(appId,parkId,cardId,orderNo,carType,payChannel,chargeMethod,
                 chargeNumber,amount,freeNumber,validFrom,validTo,createTime,remark,rechargeType,operationType,operator,paySource);
 
     }

@@ -57,18 +57,18 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
     }
 
     @Override
-    public String postCarCardChargeInfo(String appId, String key, Integer parkId, String serviceCode, String ts, String reqId, Integer cardId,
+    public String postCarCardChargeInfo(String appId,  Integer parkId, Integer cardId,
                                         String orderNo, Integer carType, Integer payChannel, Integer chargeMethod, Integer chargeNumber,
                                         Integer amount, Integer freeNumber, String validFrom, String validTo, String createTime, String remark,
                                         Integer rechargeType, Integer operationType, String operator, String paySource) {
         //参数封装
         JSONObject params = new JSONObject();
-        params.put("appId",appId);
-        params.put("key",key);
         params.put("parkId",parkId);
+        params.put("appId",appId);
+        /*params.put("key",key);
         params.put("serviceCode",serviceCode);
         params.put("ts",ts);
-        params.put("reqId",reqId);
+        params.put("reqId",reqId);*/
         params.put("cardId",cardId);
         params.put("orderNo",orderNo);
         params.put("carType",carType);
