@@ -17,6 +17,6 @@ public interface AreaService {
      * @param baseDTO
      * @return
      */
-    ResultEntity getAreaData(BaseDTO baseDTO);
+    String getAreaData(BaseDTO baseDTO);
 
 }

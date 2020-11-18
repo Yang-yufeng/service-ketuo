@@ -20,14 +20,14 @@ public interface RechargeService {
      * @param rechargeRuleInfoDTO
      * @return
      */
-    ResultEntity getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO);
+    String getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO);
 
     /**
      * 固定车充值接口
      * @param payCarCardFeeDTO
      * @return
      */
-    ResultEntity getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO);
+    String getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO);
 
 
     /**
@@ -35,12 +35,34 @@ public interface RechargeService {
      * @param fixedCarChargeRecordVo
      * @return
      */
-    ResultEntity getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordVo);
+    String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordVo);
 
     /**
      * 车场固定车充值信息上报
-     * @param params
+     * @param appId
+     * @param key
+     * @param parkId
+     * @param serviceCode
+     * @param ts
+     * @param reqId
+     * @param cardId
+     * @param orderNo
+     * @param carType
+     * @param payChannel
+     * @param chargeMethod
+     * @param chargeNumber
+     * @param amount
+     * @param freeNumber
+     * @param validFrom
+     * @param validTo
+     * @param createTime
+     * @param remark
+     * @param rechargeType
+     * @param operationType
+     * @param operator
+     * @param paySource
      * @return
      */
-    ResultEntity postCarCardChargeInfo(JSONObject params);
+    String postCarCardChargeInfo(String appId, String key, Integer parkId, String serviceCode, String ts, String reqId, Integer cardId, String orderNo, Integer carType, Integer payChannel, Integer chargeMethod, Integer chargeNumber, Integer amount, Integer freeNumber, String validFrom, String validTo, String createTime, String remark, Integer rechargeType, Integer operationType, String operator, String paySource);
+
 }

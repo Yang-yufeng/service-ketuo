@@ -30,7 +30,7 @@ public class FindCarController {
      * @return
      */
     @RequestMapping("/selectParkingSpace")
-    public ResultEntity selectParkingSpace(){
+    public String selectParkingSpace(){
 
         return findCarService.selectParkingSpace();
 
@@ -42,7 +42,7 @@ public class FindCarController {
      * @return
      */
     @RequestMapping("/getCarLocalInfo")
-    public ResultEntity searchCarByCarLicense(@RequestBody JSONObject params){
+    public String searchCarByCarLicense(@RequestBody JSONObject params){
         String plateNo = params.getString("plateNo");
         Integer pageIndex = params.getInteger("pageIndex");
         Integer pageSize = params.getInteger("pageSize");

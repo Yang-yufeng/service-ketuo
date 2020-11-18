@@ -36,7 +36,7 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/getRechargeRules",method = RequestMethod.POST)
-    public ResultEntity getRechargeRules(@RequestBody @Validated RechargeRuleInfoDTO rechargeRuleInfoDTO){
+    public String getRechargeRules(@RequestBody @Validated RechargeRuleInfoDTO rechargeRuleInfoDTO){
 
         return rechargeService.getRechargeRules(rechargeRuleInfoDTO);
 
@@ -48,7 +48,7 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/getFixedCarInfo",method = RequestMethod.POST)
-    public ResultEntity getFixedCarInfo(@RequestBody @Validated PayCarCardFeeDTO payCarCardFeeDTO){
+    public String getFixedCarInfo(@RequestBody @Validated PayCarCardFeeDTO payCarCardFeeDTO){
 
         return rechargeService.getFixedCarInfo(payCarCardFeeDTO);
 
@@ -61,7 +61,7 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/getChargeRecords",method = RequestMethod.POST)
-    public ResultEntity getChargeRecords(@RequestBody @Validated FixedCarChargeRecordDTO fixedCarChargeRecordDTO){
+    public String getChargeRecords(@RequestBody @Validated FixedCarChargeRecordDTO fixedCarChargeRecordDTO){
 
         return rechargeService.getChargeRecords(fixedCarChargeRecordDTO);
 
@@ -71,13 +71,13 @@ public class RechargeController {
      * 车场固定车充值信息上报
      * @param params
      * @return
-     */
+     *//*
     @RequestMapping(value = "/PostCarCardChargeInfo1",method = RequestMethod.POST)
-    public ResultEntity postCarCardChargeInfo(@RequestBody JSONObject params){
+    public String postCarCardChargeInfo(@RequestBody JSONObject params){
 
         return rechargeService.postCarCardChargeInfo(params);
 
-    }
+    }*/
 
     /**
      * 车场固定车充值信息上报
@@ -85,9 +85,8 @@ public class RechargeController {
      * @return
      */
     @RequestMapping(value = "/postCarCardChargeInfo",method = RequestMethod.POST)
-    public ResultEntity postCarCardChargeInfo1(HttpServletRequest request) throws IOException {
+    public String postCarCardChargeInfo1(HttpServletRequest request) throws IOException {
         BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8));
-        String param= null;
         StringBuilder responseStrBuilder = new StringBuilder();
         String inputStr;
         while ((inputStr = streamReader.readLine()) != null) {
@@ -96,7 +95,30 @@ public class RechargeController {
         JSONObject jsonObject = JSONObject.parseObject(responseStrBuilder.toString());
         System.out.println("月租车充值上报");
         System.out.println("上报参数================="+jsonObject);
-        return null;
+        String appId = jsonObject.getString("appId");
+        String key = jsonObject.getString("key");
+        Integer parkId = jsonObject.getInteger("parkId");
+        String serviceCode = jsonObject.getString("serviceCode");
+        String ts = jsonObject.getString("ts");
+        String reqId = jsonObject.getString("reqId");
+        Integer cardId = jsonObject.getInteger("cardId");
+        String orderNo = jsonObject.getString("orderNo");
+        Integer carType = jsonObject.getInteger("carType");
+        Integer payChannel = jsonObject.getInteger("payChannel");
+        Integer chargeMethod = jsonObject.getInteger("chargeMethod");
+        Integer chargeNumber = jsonObject.getInteger("chargeNumber");
+        Integer amount = jsonObject.getInteger("amount");
+        Integer freeNumber = jsonObject.getInteger("freeNumber");
+        String validFrom = jsonObject.getString("validFrom");
+        String validTo = jsonObject.getString("validTo");
+        String createTime = jsonObject.getString("createTime");
+        String remark = jsonObject.getString("remark");
+        Integer rechargeType = jsonObject.getInteger("rechargeType");
+        Integer operationType = jsonObject.getInteger("operationType");
+        String operator = jsonObject.getString("operator");
+        String paySource = jsonObject.getString("paySource");
+        return rechargeService.postCarCardChargeInfo(appId,key,parkId,serviceCode,ts,reqId,cardId,orderNo,carType,payChannel,chargeMethod,
+                chargeNumber,amount,freeNumber,validFrom,validTo,createTime,remark,rechargeType,operationType,operator,paySource);
 
     }
 

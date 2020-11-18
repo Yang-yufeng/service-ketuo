@@ -30,7 +30,7 @@ public class AreaController {
      * @return
      */
     @RequestMapping(value = "/getAreaData",method = RequestMethod.POST)
-    public ResultEntity getAreaData(@RequestBody @Validated BaseDTO baseVO){
+    public String getAreaData(@RequestBody @Validated BaseDTO baseVO){
 
 
         return areaService.getAreaData(baseVO);

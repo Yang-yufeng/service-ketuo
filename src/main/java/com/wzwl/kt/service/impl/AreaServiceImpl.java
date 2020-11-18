@@ -21,12 +21,12 @@ public class AreaServiceImpl implements AreaService {
 
 
     @Override
-    public ResultEntity getAreaData(BaseDTO baseDTO) {
+    public String getAreaData(BaseDTO baseDTO) {
         //调用api接口获取充值规则
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(baseDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_AREA_INFO,params);
         ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
         entity.setData(response);
-        return entity;
+        return entity.toString();
     }
 }

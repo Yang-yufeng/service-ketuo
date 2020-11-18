@@ -27,7 +27,7 @@ public class FindCarServiceImpl implements FindCarService {
 
 
     @Override
-    public ResultEntity selectParkingSpace() {
+    public String selectParkingSpace() {
 
         JSONObject data = new JSONObject();
         data.put("floorId",0);
@@ -42,11 +42,11 @@ public class FindCarServiceImpl implements FindCarService {
         JSONObject result = JSONObject.parseObject(response);
         ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
         entity.setData(result);
-        return entity;
+        return entity.toString();
     }
 
     @Override
-    public ResultEntity getCarLocalInfo(String plateNo, Integer pageIndex, Integer pageSize) {
+    public String getCarLocalInfo(String plateNo, Integer pageIndex, Integer pageSize) {
         JSONObject data = new JSONObject();
         data.put("plateNo",plateNo);
         data.put("pageIndex",pageIndex);
@@ -60,7 +60,7 @@ public class FindCarServiceImpl implements FindCarService {
 
         ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
         entity.setData(result);
-        return entity;
+        return entity.toString();
     }
 
 

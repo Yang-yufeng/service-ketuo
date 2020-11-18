@@ -26,38 +26,66 @@ import java.util.Map;
 public class RechargeServiceImpl implements RechargeService {   //todo    返回值需要封装
 
     @Override
-    public ResultEntity getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO) {
+    public String getRechargeRules(RechargeRuleInfoDTO rechargeRuleInfoDTO) {
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(rechargeRuleInfoDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_RECHARGE_RULES,params);
         ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
         entity.setData(response);
-        return entity;
+        return entity.toString();
     }
 
 
     @Override
-    public ResultEntity getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
+    public String getFixedCarInfo(PayCarCardFeeDTO payCarCardFeeDTO) {
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(payCarCardFeeDTO));
-        String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.Pay_Car_Card_Fee,params);
+        String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.PAY_CAR_CARD_FEE,params);
 
         ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
         entity.setData(response);
-        return entity;
+        return entity.toString();
     }
 
     @Override
-    public ResultEntity getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordDTO) {
+    public String getChargeRecords(FixedCarChargeRecordDTO fixedCarChargeRecordDTO) {
         JSONObject params = JSONObject.parseObject(JSONObject.toJSONString(fixedCarChargeRecordDTO));
         String response =  HttpUtil.doPostRequestJson(RequestUrlConstants.GET_FIXED_CAR_RECHARGE_INFO,params);
 
         ResultEntity entity = new ResultEntity(ResultEnum.SUCCESS);
         entity.setData(response);
-        return entity;
+        return entity.toString();
 
     }
 
     @Override
-    public ResultEntity postCarCardChargeInfo(JSONObject params) {
+    public String postCarCardChargeInfo(String appId, String key, Integer parkId, String serviceCode, String ts, String reqId, Integer cardId,
+                                        String orderNo, Integer carType, Integer payChannel, Integer chargeMethod, Integer chargeNumber,
+                                        Integer amount, Integer freeNumber, String validFrom, String validTo, String createTime, String remark,
+                                        Integer rechargeType, Integer operationType, String operator, String paySource) {
+        //参数封装
+        JSONObject params = new JSONObject();
+        params.put("appId",appId);
+        params.put("key",key);
+        params.put("parkId",parkId);
+        params.put("serviceCode",serviceCode);
+        params.put("ts",ts);
+        params.put("reqId",reqId);
+        params.put("cardId",cardId);
+        params.put("orderNo",orderNo);
+        params.put("carType",carType);
+        params.put("payChannel",payChannel);
+        params.put("chargeMethod",chargeMethod);
+        params.put("chargeNumber",chargeNumber);
+        params.put("amount",amount);
+        params.put("freeNumber",freeNumber);
+        params.put("validFrom",validFrom);
+        params.put("validTo",validTo);
+        params.put("createTime",createTime);
+        params.put("remark",remark);
+        params.put("rechargeType",rechargeType);
+        params.put("operationType",operationType);
+        params.put("operator",operator);
+        params.put("paySource",paySource);
+
         //先查询企业以及配置信息
         log.info("接收到车场固定车充值信息上报");
         log.info("上报参数为【{}】",params.toJSONString());
@@ -68,7 +96,7 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         boolean isSuccess=infoResponseJson.getBoolean("success");
         if (!isSuccess) {
             ResultEntity result=new ResultEntity(ResultEnum.CONFIG_NOT_EXISTED);
-            return result;
+            return result.toString();
         }
         JSONObject data=infoResponseJson.getJSONObject("data");
         log.info("查询企业配置信息成功，为【{}】",data.toJSONString());
@@ -92,11 +120,12 @@ public class RechargeServiceImpl implements RechargeService {   //todo    返回
         boolean reportSuccess=reportResponseJson.getBoolean("success");
         if (!reportSuccess) {
             ResultEntity result=new ResultEntity(ResultEnum.DATA_REPORT_ERROR);
-            return result;
+            return result.toString();
         }
         ResultEntity result=new ResultEntity(ResultEnum.SUCCESS);
-        return result;
+        return result.toString();
     }
+
 
 
 }

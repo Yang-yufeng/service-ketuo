@@ -54,7 +54,7 @@ public class RequestUrlConstants {
     /**
      * 固定车充值
      */
-    public static final String Pay_Car_Card_Fee="http://kp-open.keytop.cn/unite-api/api/wec/PayCarCardFee";
+    public static final String PAY_CAR_CARD_FEE="http://kp-open.keytop.cn/unite-api/api/wec/PayCarCardFee";
 
     /**
      * 查询固定车充值信息
