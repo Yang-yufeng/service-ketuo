@@ -10,6 +10,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @ClassName RechargeController
@@ -67,10 +72,31 @@ public class RechargeController {
      * @param params
      * @return
      */
-    @RequestMapping(value = "/PostCarCardChargeInfo",method = RequestMethod.POST)
+    @RequestMapping(value = "/PostCarCardChargeInfo1",method = RequestMethod.POST)
     public ResultEntity postCarCardChargeInfo(@RequestBody JSONObject params){
 
         return rechargeService.postCarCardChargeInfo(params);
+
+    }
+
+    /**
+     * 车场固定车充值信息上报
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/postCarCardChargeInfo",method = RequestMethod.POST)
+    public ResultEntity postCarCardChargeInfo1(HttpServletRequest request) throws IOException {
+        BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8));
+        String param= null;
+        StringBuilder responseStrBuilder = new StringBuilder();
+        String inputStr;
+        while ((inputStr = streamReader.readLine()) != null) {
+            responseStrBuilder.append(inputStr);
+        }
+        JSONObject jsonObject = JSONObject.parseObject(responseStrBuilder.toString());
+        System.out.println("月租车充值上报");
+        System.out.println("上报参数================="+jsonObject);
+        return null;
 
     }
 
